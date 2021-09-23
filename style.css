@@ -10,9 +10,8 @@ header {
   background: radial-gradient(#fff, #f3d0ff);
 }
 
-/* CONTAINER */
 .container {
-  max-width: 1300px;
+  max-width: 1080px;
   margin: auto;
   padding: 0 50px;
 }
@@ -47,21 +46,26 @@ p {
   align-items: center;
   justify-content: space-around;
   /* flex-wrap: nowrap thì các items sẽ tự động co lại cho chớ không có rớt xuống hàng, điều này dễ làm cho content bên trong(nếu có) bị ép lại có thể gây xấu giao diện. */
-  /* ngược lại so với flex-wrap: nowrap khi kích thước container thay đổi và tổng chiều rộng các items cộng lại lớn hơn chiều rộng của container bọc ngoài thì nó sẽ rớt xuống. */
+  /* ngược lại so với flex-wrap: nowrap. khi kích thước container thay đổi và tổng chiều rộng các items cộng lại lớn hơn chiều rộng của container bọc ngoài thì nó sẽ rớt xuống. */
   flex-wrap: wrap;
 }
 
+/* BANNER */
 .col-2 {
   /* specifies the initial length of a flexible item. */
   flex-basis: 50%;
   min-width: 300px;
 }
 
-/* BANNER */
+header .row {
+  margin-top: 80px;
+  padding-bottom: 100px;
+}
+
 .col-2 img {
   max-width: 100%;
-  height: 45rem;
-  float: right;
+  height: 30rem;
+  width: 40rem;
 }
 
 .col-2 h1 {
@@ -85,3 +89,22 @@ p {
 .btn:hover {
   background: rgb(137, 4, 149);
 }
+
+/* categories */
+.categories {
+  margin: 50px 0px;
+}
+
+.col-3 {
+  flex-basis: 20%;
+  /* vi margin left -right 50px o .categories nen tu 300px -> 250px */
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+
+.col-3 img {
+  width: 100%;
+  height: 250px;
+}
+
+
