@@ -99,6 +99,7 @@ header .row {
   margin-bottom: 20px;
   transition: transform 0.2s;
   text-align: center;
+  cursor: pointer;
 }
 
 .col-3 img {
@@ -148,6 +149,31 @@ h4 {
   background: radial-gradient(#fff, rgb(250, 214, 235));
 }
 
-small {
+/* TESTIMONIAL */
+.sector-testimonial .col-3{
+  padding: 30px 20px;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.sector-testimonial .col-3 img{
+  width: 50%;
+  height: 50%;
+  margin-top: 20px;
+  border-radius: 50%;
+}
+
+.sector-testimonial p{
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.sector-testimonial h3{
+  font-weight: 600;
   color: rgb(68, 67, 67);
+  font-size: 16px;
+}
+
+.fa.fa-quote-left {
+  font-size: 30px;
+  color: rgb(138, 11, 138);
 }
