@@ -12,8 +12,7 @@ header {
 
 .container {
   max-width: 1300px;
-  margin: auto;
-  margin-bottom: 50px;
+  margin: 0 auto 50px;
   padding: 0 50px;
 }
 
@@ -91,11 +90,6 @@ header .row {
   background: rgb(137, 4, 149);
 }
 
-/* categories */
-.categories {
-  margin: 50px 0px;
-}
-
 /* FEATURE CATEGORY*/
 .col-3 {
   flex-basis: 20%;
@@ -123,10 +117,14 @@ h4 {
 
 .title {
   text-align: center;
-  margin: 0 auto 30px;
+  margin: 0 auto 40px;
   position: relative;
   line-height: 60px;
   color: rgb(49, 49, 49);
+}
+
+.container .title {
+  margin-top: 30px;
 }
 
 .title::after {
@@ -143,4 +141,13 @@ h4 {
 
 .rating .fa {
   color: rgb(123, 87, 209);
+}
+
+/* OFFER PRODUCT- */
+.sector-offer {
+  background: radial-gradient(#fff, rgb(250, 214, 235));
+}
+
+small {
+  color: rgb(68, 67, 67);
 }
