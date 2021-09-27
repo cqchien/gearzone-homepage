@@ -398,5 +398,13 @@
     </div>
 
     <!-- Script -->
+    <script>
+      const menuItems = document.getElementById("menu-items");
+      menuItems.style.maxHeight = "0px";
+
+      function menuToggle() {
+        menuItems.style.maxHeight = menuItems.style.maxHeight === "0px" ? "200px" : "0px";
+      }
+    </script>
   </body>
 </html>
