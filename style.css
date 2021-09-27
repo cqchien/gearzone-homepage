@@ -289,6 +289,7 @@ ul {
     left: 0;
     background: #59039b;
     width: 100%;
+    transition: max-height 0.25s;
   }
 
   nav ul li {
@@ -298,12 +299,17 @@ ul {
     margin-bottom: 10px;
   }
 
-  nav ul li a{
+  nav ul li a {
     color: #f3d0ff;
   }
 
   .menu-icon {
     display: inline-block;
     cursor: pointer;
+  }
+
+  .col-2,
+  .col-4 {
+    flex-basis: 100%;
   }
 }
