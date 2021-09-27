@@ -27,7 +27,7 @@
           </div>
           <!-- NAV -->
           <nav>
-            <ul>
+            <ul id="menu-items">
               <li>
                 <a href="#">Home</a>
               </li>
@@ -40,7 +40,12 @@
               <li><a href="#">Contact</a></li>
             </ul>
             <img src="images/cart.png" width="70px" alt="cart" />
-            <img src="images/menu.png" class="menu" alt="menu" />
+            <img
+              src="images/menu.png"
+              class="menu-icon"
+              alt="menu"
+              onclick="menuToggle()"
+            />
           </nav>
         </div>
 
@@ -391,5 +396,7 @@
         <p class="copy-right">Copyright 2021 - GameZone</p>
       </div>
     </div>
+
+    <!-- Script -->
   </body>
 </html>

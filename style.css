@@ -28,6 +28,7 @@ header {
 
 nav {
   text-align: right;
+  display: flex;
 }
 
 nav ul {
@@ -40,7 +41,8 @@ nav li {
   margin-right: 20px;
 }
 
-.menu {
+.menu-icon {
+  display: none;
   width: 28px;
   margin-left: 20px;
 }
@@ -281,6 +283,27 @@ ul {
 
 /* Responsive */
 @media only screen and (max-width: 800px) {
-  nav {
+  nav ul {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    background: #59039b;
+    width: 100%;
+  }
+
+  nav ul li {
+    display: block;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  nav ul li a{
+    color: #f3d0ff;
+  }
+
+  .menu-icon {
+    display: inline-block;
+    cursor: pointer;
   }
 }
