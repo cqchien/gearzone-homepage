@@ -26,12 +26,21 @@ header {
   align-items: center;
 }
 
-.navbar a {
-  margin-right: 20px;
-  font-size: 20px;
+nav {
+  text-align: right;
 }
 
-.menu{
+nav ul {
+  display: inline-block;
+}
+
+nav li {
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.menu {
   width: 28px;
   margin-left: 20px;
 }
@@ -184,7 +193,7 @@ h4 {
 }
 
 /* BRANDS */
-.sector-brands .container{
+.sector-brands .container {
   margin: 100px auto;
 }
 
@@ -211,15 +220,15 @@ h4 {
   padding: 50px 0 20px;
 }
 
-.sector-footer .row{
+.sector-footer .row {
   align-items: flex-start;
 }
 
-.sector-footer .container{
-  margin-bottom: 0;  
+.sector-footer .container {
+  margin-bottom: 0;
 }
 
-.sector-footer h3{
+.sector-footer h3 {
   color: rgb(212, 212, 212);
   margin-bottom: 30px;
 }
@@ -228,20 +237,16 @@ h4 {
   color: #8a8a8a;
 }
 
-.sector-footer img{
-  filter:brightness(100%);
-}
-
-.footer-col-3{
+.footer-col-3 {
   flex-basis: 30%;
 }
 
-.footer-col-4{
+.footer-col-4 {
   flex: 1;
   text-align: center;
 }
 
-.footer-col-4 img{
+.footer-col-4 img {
   width: 25%;
   margin-bottom: 10px;
 }
@@ -255,15 +260,15 @@ ul {
   list-style-type: none;
 }
 
-.app-logo{
+.app-logo {
   margin-top: 20px;
 }
 
-.app-logo img{
+.app-logo img {
   width: 140px;
 }
 
-.sector-footer hr{
+.sector-footer hr {
   border: none;
   background: #8a8a8a;
   height: 1px;
@@ -272,4 +277,10 @@ ul {
 
 .copy-right {
   text-align: center;
+}
+
+/* Responsive */
+@media only screen and (max-width: 800px) {
+  nav {
+  }
 }
