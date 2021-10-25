@@ -1,0 +1,91 @@
+.HotSellingAccessories {
+    padding: 15px 0;
+    .container {
+        .nav-group {
+            margin: 1rem 0rem 0rem 0rem;
+            .each-nav {
+                color: black;
+                border: none;
+                padding: 10px 14px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                font-weight: bold;
+                border-radius: 12px;
+                transition: all 0.5s;
+            }
+            .each-nav:hover {
+                text-decoration: underline;
+            }
+            .active {
+                color: #027492;
+            }
+        }
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0rem 0rem 0rem;
+        }
+        .card {
+            transition: all 0.5s;
+            div.col-md-6.my-fix {
+                text-align: center;
+                position: center center;
+                padding: 1rem;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+            .card-title {
+                text-align: center;
+                font-weight: 600;
+            }
+            .card-text {
+                text-align: center;
+                font-weight: bold;
+                color: #027492;
+                margin-bottom: 1.5rem;
+            }
+            .card-body {
+                padding: 1rem 0.5rem 1rem 1rem;
+            }
+            .my-btn {
+                background-color: #027492;
+                color: white;
+                padding: 10px 28px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                font-weight: bold;
+                border-radius: 12px;
+                border: 2px solid #027492;
+                transition: all 0.5s;
+                width: 100%;
+                margin: 0 auto;
+            }
+            .my-btn:hover {
+                background-color: white;
+                color: #027492;
+                box-shadow: 3px 3px 2px 2px #c4c4c4;
+            }
+        }
+        .card:hover {
+            border: 3px solid #027492;
+            box-shadow: 3px 3px 2px 2px #c4c4c4;
+        }
+        .all {
+            text-align: right;
+        }
+        .all-content {
+            color: #4e4b4b;
+            font-style: italic;
+        }
+        .all-content:hover {
+            color: #027492;
+            font-weight: bold;
+        }
+    }
+}
