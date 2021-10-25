@@ -1,0 +1,39 @@
+.carousel_item{
+    background-image: linear-gradient(to right, #fcfc5e, white, #fcfc5e);
+    .carousel_item-left{
+        padding: 30px 15px;
+    }
+    .carousel_item-right{
+        margin: auto;
+        text-align: right;
+        .carousel_item-title{
+            font-size: 50px;
+            font-weight: 700;
+        }
+        .carousel_item-content{
+            font-size: 18px;
+            font-weight: 600;
+            span{
+                color: #015970;
+            }
+        }
+        .my-btn {
+            background-color: #027492;
+            color: white;
+            padding: 10px 28px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 12px;
+            border: 2px solid #027492;
+            transition: all 0.5s;
+            &:hover {
+                background-color: white;
+                color: #027492;
+                box-shadow: 3px 3px 2px 2px #c4c4c4;
+            }
+        }
+    }
+}
