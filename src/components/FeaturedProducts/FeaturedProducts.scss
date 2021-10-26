@@ -20,7 +20,7 @@
                 text-decoration: underline;
             }
             .active {
-                color: #027492;
+                color: #0fbdbc;
             }
         }
         .title {
@@ -50,14 +50,14 @@
             }
             .card-text {
                 font-weight: bold;
-                color: #027492;
+                color: #0fbdbc;
                 margin-bottom: 1.5rem;
             }
             .card-body {
                 padding: 1rem 0.5rem 1rem 1rem;
             }
             .my-btn {
-                background-color: #027492;
+                background-color: #0fbdbc;
                 color: white;
                 padding: 10px 28px;
                 text-align: center;
@@ -66,17 +66,17 @@
                 font-size: 14px;
                 font-weight: bold;
                 border-radius: 12px;
-                border: 2px solid #027492;
+                border: 2px solid #0fbdbc;
                 transition: all 0.5s;
             }
             .my-btn:hover {
                 background-color: white;
-                color: #027492;
+                color: #0fbdbc;
                 box-shadow: 3px 3px 2px 2px #c4c4c4;
             }
         }
         .card:hover {
-            border: 3px solid #027492;
+            border: 3px solid #0fbdbc;
             box-shadow: 3px 3px 2px 2px #c4c4c4;
         }
         .all {
@@ -87,7 +87,7 @@
             font-style: italic;
         }
         .all-content:hover {
-            color: #027492;
+            color: #0fbdbc;
             font-weight: bold;
         }
     }

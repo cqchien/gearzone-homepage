@@ -11,7 +11,7 @@
                 }
                 .my-btn {
                     width: 100%;
-                    background-color: #027492;
+                    background-color: #0fbdbc;
                     border: none;
                     color: white;
                     padding: 10px;
@@ -21,11 +21,11 @@
                     font-size: 16px;
                     font-weight: bold;
                     border-radius: 12px;
-                    border: 2px solid #027492;
+                    border: 2px solid #0fbdbc;
                     transition: all 0.5s;
                     &:hover {
                         background-color: white;
-                        color: #027492;
+                        color: #0fbdbc;
                         box-shadow: 3px 3px 2px 2px #c4c4c4;
                     }
                 }
@@ -34,7 +34,7 @@
                 .card {
                     transition: all 0.5s;
                     &:hover {
-                        border: 3px solid #027492;
+                        border: 3px solid #0fbdbc;
                         box-shadow: 3px 3px 2px 2px #c4c4c4;
                     }
                     img{
