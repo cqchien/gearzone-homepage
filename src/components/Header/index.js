@@ -11,7 +11,7 @@ import { FaAngleDown, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import "./Header.scss";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ isScroll }) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Wish list
@@ -36,7 +36,7 @@ export default function Header() {
   useEffect(() => {
     const handleScrollHeader = () => {
       if (window.scrollY >= 10) {
-        setResult(result);
+        setResult(result | isScroll);
       } else {
         setResult(false);
       }
@@ -48,10 +48,10 @@ export default function Header() {
   }, [result]);
 
   return (
-    <div className={result ? "HeaderMiddle scroll" : "HeaderMiddle"}>
+    <div className={result ? "Header scroll" : "Header"}>
       <div className="container">
-        <Navbar className="HeaderMiddle_navbar row">
-          <Link to="/" className="HeaderMiddle_navbrand col-3">
+        <Navbar className="Header_navbar row">
+          <Link to="/" className="Header_navbrand col-3">
             <img
               src="/images/logoGZ.png"
               alt="Logo"
@@ -59,33 +59,33 @@ export default function Header() {
             ></img>
           </Link>
           <InputGroup
-            className="HeaderMiddle_search col-6 "
+            className="Header_search col-6 "
             style={{ maxWidth: "50%" }}
           >
-            <Input className="HeaderMiddle_input" placeholder="Search..." />
+            <Input className="Header_input" placeholder="Search..." />
             <InputGroupAddon addonType="append">
-              <Button className="HeaderMiddle_btnSearch">
+              <Button className="Header_btnSearch">
                 <span>Search</span>
               </Button>
             </InputGroupAddon>
           </InputGroup>
-          <div className="HeaderMiddle_icon col-3">
-            <Link className=" HeaderMiddle_shoppingcart" to="/myshoppingcart">
+          <div className="Header_icon col-3">
+            <Link className=" Header_shoppingcart" to="/myshoppingcart">
               <div className="shoppingcart_container">
-                <FaShoppingCart className="HeaderMiddle_iconShoppingCart"></FaShoppingCart>
-                <span className="HeaderMiddle_amountShoppingCart">
+                <FaShoppingCart className="Header_iconShoppingCart"></FaShoppingCart>
+                <span className="Header_amountShoppingCart">
                   {amountOrderCart}
                 </span>
               </div>
-              <span className="HeaderMiddle_shoppingcart-name">Cart</span>
+              <span className="Header_shoppingcart-name">Cart</span>
             </Link>
-            <div className=" HeaderMiddle_shoppingcart">
+            <div className=" Header_shoppingcart">
               <div className="shoppingcart_container">
-                <FaUserCircle className="HeaderMiddle_iconShoppingCart"></FaUserCircle>
+                <FaUserCircle className="Header_iconShoppingCart"></FaUserCircle>
               </div>
-              <span className="HeaderMiddle_shoppingcart-name">Account</span>
+              <span className="Header_shoppingcart-name">Account</span>
               <FaAngleDown
-                className="HeaderTop_Right-BtnIcon"
+                className="TopBar_Right-BtnIcon"
                 onClick={() => setIsOpen(!isOpen)}
               ></FaAngleDown>
               <Collapse className="Header-Collapse" isOpen={isOpen}>

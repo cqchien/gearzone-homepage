@@ -5,12 +5,12 @@ import Category from "../components/Category/index";
 import Footer from "../components/Footer/index";
 import FeaturedProducts from "../components/FeaturedProducts/index";
 import HotSellingAccessories from "../components/HotSellingAccessories/index";
-import HeaderTop from "../components/HeaderTop/HeaderTop";
+import TopBar from "../components/TopBar/TopBar";
 
 export default function Home() {
   return (
     <>
-      <HeaderTop />
+      <TopBar />
       <Header isScroll={true}></Header>
       <Slider></Slider>
       <Category></Category>
