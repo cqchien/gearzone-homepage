@@ -11,11 +11,14 @@ export default function Home() {
   return (
     <>
       <TopBar />
-      <Header isScroll={true}></Header>
-      <Slider></Slider>
-      <Category></Category>
-      <FeaturedProducts></FeaturedProducts>
-      <HotSellingAccessories></HotSellingAccessories>
+      <Header isScroll={true} />
+      <Slider />
+      <Category />
+      <FeaturedProducts />
+      <HotSellingAccessories title="HOT PROMOTION KEYBOARD - FREE DELIVERY" category="KEYBOARD"/>
+      <HotSellingAccessories title="CHEAP MOUSE - FREE SHIPPING" category="MOUSE"/>
+      <HotSellingAccessories title="GEARZONE PADS - FREE NATIONWIDE SHIPPING" category="PAD"/>
+
       <Footer></Footer>
     </>
   );

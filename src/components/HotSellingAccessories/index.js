@@ -1,24 +1,18 @@
 import React from "react";
 import "./HotSellingAccessories.scss";
 
-export default function HotSellingAccessories() {
+export default function HotSellingAccessories({title, category}) {
   return (
     <div className="HotSellingAccessories">
       <div className="container">
-        <div className="row">
+        <div className="row row-title">
           <div className="col">
-            <p className="title">Phụ kiện bán chạy</p>
+            <p className="title">{title}</p>
           </div>
           <div className="col" style={{ textAlign: "right" }}>
             <div className="nav-group">
               <a href="#" className="each-nav">
-                PC Gaming
-              </a>
-              <a href="#" className="each-nav">
-                Laptop
-              </a>
-              <a href="#" className="each-nav active">
-                Điện thoại
+                {category}
               </a>
             </div>
           </div>
@@ -163,7 +157,7 @@ export default function HotSellingAccessories() {
         {/**/}
         <div className="all">
           <a className="all-content" href="">
-            Xem tất cả
+            View All.
           </a>
         </div>
       </div>
