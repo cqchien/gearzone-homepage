@@ -11,7 +11,7 @@ export default function HotSellingAccessories({title, category}) {
           </div>
           <div className="col" style={{ textAlign: "right" }}>
             <div className="nav-group">
-              <a href="#" className="each-nav">
+              <a href="/" className="each-nav">
                 {category}
               </a>
             </div>
@@ -156,7 +156,7 @@ export default function HotSellingAccessories({title, category}) {
         </div>
         {/**/}
         <div className="all">
-          <a className="all-content" href="">
+          <a className="all-content" href="/">
             View All.
           </a>
         </div>

@@ -15,25 +15,25 @@ export default function Header({ isScroll }) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Wish list
-  let wishList = localStorage.getItem("wishList")
-    ? JSON.parse(localStorage.getItem("wishList"))
-    : [];
-  let arrayIdWishList = Object.keys(wishList);
+  // let wishList = localStorage.getItem("wishList")
+  //   ? JSON.parse(localStorage.getItem("wishList"))
+  //   : [];
 
   // Order Cart
-  let orderCart = localStorage.getItem("orderCart")
-    ? JSON.parse(localStorage.getItem("orderCart"))
-    : [];
-  let arrayIdOrderCart = Object.keys(orderCart);
+  // let orderCart = localStorage.getItem("orderCart")
+  //   ? JSON.parse(localStorage.getItem("orderCart"))
+  //   : [];
+  // let arrayIdOrderCart = Object.keys(orderCart);
 
   const [result, setResult] = useState(false);
 
-  const [amountOrderCart, setAmount] = useState(arrayIdOrderCart.length);
+  // const [amountOrderCart, setAmount] = useState(arrayIdOrderCart.length);
 
-  const abortController = new AbortController();
-  const signal = abortController.signal;
+  // const signal = abortController.signal;
 
   useEffect(() => {
+    const abortController = new AbortController();
+    
     const handleScrollHeader = () => {
       if (window.scrollY >= 10) {
         setResult(result | isScroll);
@@ -45,7 +45,7 @@ export default function Header({ isScroll }) {
     return function cleanup() {
       abortController.abort();
     };
-  }, [result]);
+  }, [result, isScroll]);
 
   return (
     <div className={result ? "Header scroll" : "Header"}>
@@ -74,7 +74,7 @@ export default function Header({ isScroll }) {
               <div className="shoppingcart_container">
                 <FaShoppingCart className="Header_iconShoppingCart"></FaShoppingCart>
                 <span className="Header_amountShoppingCart">
-                  {amountOrderCart}
+                  {/* {amountOrderCart} */} 0
                 </span>
               </div>
               <span className="Header_shoppingcart-name">Cart</span>

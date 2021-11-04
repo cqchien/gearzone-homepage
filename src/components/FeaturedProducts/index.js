@@ -11,13 +11,13 @@ export default function FeaturedProducts() {
           </div>
           <div className="col" style={{ textAlign: "right" }}>
             <div className="nav-group">
-              <a href="#" className="each-nav">
+              <a href="/" className="each-nav">
                 PC Gaming
               </a>
-              <a href="#" className="each-nav">
+              <a href="/" className="each-nav">
                 Laptop
               </a>
-              <a href="#" className="each-nav active">
+              <a href="/" className="each-nav active">
                 Điện thoại
               </a>
             </div>
@@ -130,7 +130,7 @@ export default function FeaturedProducts() {
         </div>
         {/**/}
         <div className="all">
-          <a className="all-content" href="">
+          <a className="all-content" href="/">
             Xem tất cả
           </a>
         </div>

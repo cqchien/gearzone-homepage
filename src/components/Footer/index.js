@@ -15,7 +15,11 @@ export default function Footer() {
         <div className="row">
           <div className="col-4">
             <div>
-              <img src="/images/logoGZfooter.png" className="logo w-75" alt="logo" />
+              <img
+                src="/images/logoGZfooter.png"
+                className="logo w-75"
+                alt="logo"
+              />
             </div>
             <p className="title">CÔNG TY TNHH THƯƠNG MẠI VVV SHOP</p>
             <p className="content">
@@ -29,19 +33,19 @@ export default function Footer() {
             <p className="section">Về chúng tôi</p>
             <hr />
             <p className="content">
-              <a href="#">Giới thiệu</a>
+              <a href="/">Giới thiệu</a>
             </p>
             <p className="content">
-              <a href="#">Điều khoản chính sách</a>
+              <a href="/">Điều khoản chính sách</a>
             </p>
             <p className="content">
-              <a href="#">Quy chế hoạt động</a>
+              <a href="/">Quy chế hoạt động</a>
             </p>
             <p className="content">
-              <a href="#">Chính sách bảo mật thông tin</a>
+              <a href="/">Chính sách bảo mật thông tin</a>
             </p>
             <p className="content">
-              <a href="#">Giải quyết khiếu nại, tranh chấp</a>
+              <a href="/">Giải quyết khiếu nại, tranh chấp</a>
             </p>
           </div>
           <div className="col-md-4">
@@ -49,7 +53,7 @@ export default function Footer() {
             <hr />
             <p>
               <FaMapMarked className="footer_icon"></FaMapMarked>
-              <a href="#" className="content">
+              <a href="/" className="content">
                 Song Hành, khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh
               </a>
             </p>
@@ -59,19 +63,19 @@ export default function Footer() {
             </p>
             <p className="content">
               <CgMail className="footer_icon"></CgMail>
-              <a className="text-mail" href="#">
+              <a className="text-mail" href="/">
                 vvvshop@gmail.com
               </a>
             </p>
             <hr />
             <div>
-              <a href="#">
+              <a href="/">
                 <FaFacebookSquare className="footer_icon footer_icon-fb"></FaFacebookSquare>
               </a>
-              <a href="#">
+              <a href="/">
                 <AiFillYoutube className="footer_icon footer_icon-youtube"></AiFillYoutube>
               </a>
-              <a href="#">
+              <a href="/">
                 <AiFillTwitterSquare className="footer_icon footer_icon-tw"></AiFillTwitterSquare>
               </a>
             </div>

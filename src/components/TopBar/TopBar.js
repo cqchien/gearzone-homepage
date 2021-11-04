@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaPhoneAlt,
   FaPhoneVolume,
@@ -6,24 +6,21 @@ import {
   FaUserEdit,
 } from "react-icons/fa";
 import "./TopBar.scss";
-import { useDispatch } from "react-redux";
 
 export default function TopBar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const dispatch = useDispatch();
   let objInfoUser = {};
 
-  const handleLogout = () => {
-    let answer = window.confirm("Are you sure about that ?");
-    if (answer) {
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("userSignUp");
-    }
-  };
+  // const handleLogout = () => {
+  //   let answer = window.confirm("Are you sure about that ?");
+  //   if (answer) {
+  //     localStorage.removeItem("auth_token");
+  //     localStorage.removeItem("userSignUp");
+  //   }
+  // };
 
-  const handleGetInfoUser = (id) => {
-    console.log("handleGetInfoUser - id", id);
-  };
+  // const handleGetInfoUser = (id) => {
+  //   console.log("handleGetInfoUser - id", id);
+  // };
 
   // const { dataUpdateUser } = useSelector(
   //   (state) => state.updateInfoUserReducer
@@ -31,7 +28,7 @@ export default function TopBar() {
 
   console.log(objInfoUser._id);
 
-  const toggle = () => setIsOpen(!isOpen);
+  // const toggle = () => setIsOpen(!isOpen);
   return (
     <div className="top-bar">
       <div className="container">
