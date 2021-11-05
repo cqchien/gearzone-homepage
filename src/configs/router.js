@@ -4,6 +4,7 @@ import { ROUTES } from "../constant/routePath";
 const HomePage = React.lazy(() => import("../pages/Home"));
 const ProductsPage = React.lazy(() => import("../pages/Products"));
 const SignUpPage = React.lazy(() => import("../pages/Signup"));
+const SignInPage = React.lazy(() => import("../pages/SignIn"));
 
 export const routes = [
   {
@@ -20,5 +21,10 @@ export const routes = [
     path: ROUTES.SIGNUP,
     exact: true,
     component: () => <SignUpPage />,
+  },
+  {
+    path: ROUTES.SIGNIN,
+    exact: true,
+    component: () => <SignInPage />,
   },
 ];
