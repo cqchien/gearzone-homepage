@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./FeaturedProducts.scss";
+import { ROUTES } from "../../constant/routePath";
 
 export default function FeaturedProducts() {
   return (
@@ -7,7 +9,7 @@ export default function FeaturedProducts() {
       <div className="container">
         <div className="row">
           <div className="col">
-            <p className="title">Sản phẩm nổi bật</p>
+            <p className="title">Feature Products</p>
           </div>
           <div className="col" style={{ textAlign: "right" }}>
             <div className="nav-group">
@@ -30,7 +32,11 @@ export default function FeaturedProducts() {
             <div className="card mb-3" style={{ maxWidth: 540 }}>
               <div className="row no-gutters">
                 <div className="col-md-6 my-fix">
-                  <img src="/images/Phone/phone-01.png" alt="..." id="phone-01" />
+                  <img
+                    src="/images/Phone/phone-01.png"
+                    alt="..."
+                    id="phone-01"
+                  />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
@@ -46,7 +52,11 @@ export default function FeaturedProducts() {
             <div className="card mb-3" style={{ maxWidth: 540 }}>
               <div className="row no-gutters">
                 <div className="col-md-6 my-fix">
-                  <img src="/images/Phone/phone-02.png" alt="..." id="phone-02" />
+                  <img
+                    src="/images/Phone/phone-02.png"
+                    alt="..."
+                    id="phone-02"
+                  />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
@@ -62,7 +72,11 @@ export default function FeaturedProducts() {
             <div className="card mb-3" style={{ maxWidth: 540 }}>
               <div className="row no-gutters">
                 <div className="col-md-6 my-fix">
-                  <img src="/images/Phone/phone-03.png" alt="..." id="phone-03" />
+                  <img
+                    src="/images/Phone/phone-03.png"
+                    alt="..."
+                    id="phone-03"
+                  />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
@@ -81,7 +95,11 @@ export default function FeaturedProducts() {
             <div className="card mb-3" style={{ maxWidth: 540 }}>
               <div className="row no-gutters">
                 <div className="col-md-6 my-fix">
-                  <img src="/images/Phone/phone-04.png" alt="..." id="phone-04" />
+                  <img
+                    src="/images/Phone/phone-04.png"
+                    alt="..."
+                    id="phone-04"
+                  />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
@@ -99,7 +117,11 @@ export default function FeaturedProducts() {
             <div className="card mb-3" style={{ maxWidth: 540 }}>
               <div className="row no-gutters">
                 <div className="col-md-6 my-fix">
-                  <img src="/images/Phone/phone-05.png" alt="..." id="phone-05" />
+                  <img
+                    src="/images/Phone/phone-05.png"
+                    alt="..."
+                    id="phone-05"
+                  />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
@@ -115,7 +137,11 @@ export default function FeaturedProducts() {
             <div className="card mb-3" style={{ maxWidth: 540 }}>
               <div className="row no-gutters">
                 <div className="col-md-6 my-fix">
-                  <img src="/images/Phone/phone-06.png" alt="..." id="phone-06" />
+                  <img
+                    src="/images/Phone/phone-06.png"
+                    alt="..."
+                    id="phone-06"
+                  />
                 </div>
                 <div className="col-md-6">
                   <div className="card-body">
@@ -130,9 +156,9 @@ export default function FeaturedProducts() {
         </div>
         {/**/}
         <div className="all">
-          <a className="all-content" href="/">
-            Xem tất cả
-          </a>
+          <Link className="all-content" to={ROUTES.PRODUCTS}>
+            View All.
+          </Link>
         </div>
       </div>
     </div>
