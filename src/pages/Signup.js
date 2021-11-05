@@ -7,7 +7,11 @@ const SignupPage = () => {
   return (
     <>
       <Header isScroll={false} />
-      <SignUp />
+      <div style={{ height: "64.5vh" }}>
+        <div className="transform-center" style={{top: "40%", width: "50vh" }}>
+          <SignUp />
+        </div>
+      </div>
       <Footer />
     </>
   );

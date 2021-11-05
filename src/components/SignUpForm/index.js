@@ -1,89 +1,117 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
-  InputGroup,
-  InputGroupText,
-} from "reactstrap";
-import { FaUserAlt } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import "./signUpForm.scss";
-import { Loop } from "@material-ui/icons";
+  IconButton,
+  InputAdornment,
+  makeStyles,
+} from "@material-ui/core";
+import { useForm } from "react-hook-form";
+import { formStyle } from "../formStyle";
+import TextFieldCustom from "../UI/TextField";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Loop, Visibility, VisibilityOff } from "@material-ui/icons";
+import { useEffect, useState } from "react";
 
-const SignUpForm = ({ validationSchema, handleSignup, loading }) => {
+const useStyle = makeStyles(formStyle);
+
+function SignUpForm({ validationSchema, handleRegister, loading }) {
+  const classes = useStyle();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(validationSchema), mode: "onChange" });
+    // Read the formState before render to subscribe the form state through the Proxy
+    // errors: 	An  object with field errors to retrieve error message easily.
+    formState: { errors, isSubmitSuccessful },
+    reset,
+  } = useForm({ resolver: yupResolver(validationSchema) });
+
+  // Reset field after submit successfully
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({
+        name: "",
+        email: "",
+        password: "",
+      });
+    }
+  }, [isSubmitSuccessful, reset]);
+
+  // Change state to view password
+  const [isVisiblePass, changeVisiblePass] = useState(false);
 
   return (
-    <form onSubmit={handleSubmit(handleSignup)} autoComplete="false">
-      <div className="container">
-        <h3 className="form-title">Sign Up</h3>
-        <br />
-        <div className="form-container">
-          <InputGroup className="form-inputGroup">
-            <InputGroupText>
-              <FaUserAlt />
-            </InputGroupText>
-            <input
-              className="form-input"
-              placeholder="Name"
-              {...register("name")}
-              disabled={loading}
-            />
-          </InputGroup>
-          {errors.name && (
-            <div className="alert alert-danger">{errors.name.message}</div>
-          )}
-          <InputGroup className="form-inputGroup">
-            <InputGroupText>
-              <MdEmail />
-            </InputGroupText>
-            <input
-              className="form-input"
-              placeholder="Email"
-              {...register("email")}
-              disabled={loading}
-            />
-          </InputGroup>
-          {errors.email && (
-            <div className="alert alert-danger">{errors.email.message}</div>
-          )}
-          <InputGroup className="form-inputGroup">
-            <InputGroupText>
-              <RiLockPasswordFill></RiLockPasswordFill>
-            </InputGroupText>
-            <input
-              className="form-input"
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-              disabled={loading}
-            />
-          </InputGroup>
-          {errors.password && (
-            <div className="alert alert-danger">{errors.password.message}</div>
-          )}
-          <div className="center">
-            <Button type="submit" className="btn btn-form" active={!loading}>
-              Sign Up
-              {loading && <Loop className="ani-spin" />}
-            </Button>
-          </div>
-          <p style={{ textAlign: "center" }}>
-            <Link to="/forgotPassword">Forget Password </Link>
-            Or
-            <Link to="/login">Sign In</Link>
-          </p>
-        </div>
+    <form
+      className={`${classes.root} flex-col`}
+      autoComplete="off"
+      onSubmit={handleSubmit(handleRegister)}
+    >
+      <div className="flex-col">
+        <h1 className={`${classes.title} t-center`}>Sign Up</h1>
       </div>
+      <div className="flex-col">
+        <TextFieldCustom
+          label="Name"
+          size="small"
+          error={Boolean(errors.name)}
+          placeholder="Input Name"
+          disabled={loading}
+          inputProps={{
+            ...register("name"),
+            autoFocus: true,
+          }}
+          helperText={errors.name?.message}
+        />
+      </div>
+      <div className="flex-col">
+        <TextFieldCustom
+          label="Email"
+          size="small"
+          placeholder="Input email"
+          error={Boolean(errors.email)}
+          disabled={loading}
+          inputProps={{
+            ...register("email"),
+          }}
+          helperText={errors.email?.message}
+        />
+      </div>
+      <div className="flex-col">
+        <TextFieldCustom
+          label="Password"
+          size="small"
+          placeholder="Input Password"
+          error={Boolean(errors.password)}
+          helperText={errors.password?.message}
+          disabled={loading}
+          inputProps={{
+            ...register("password"),
+            type: isVisiblePass ? "text" : "password",
+          }}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton onClick={() => changeVisiblePass(!isVisiblePass)}>
+                {isVisiblePass ? (
+                  <Visibility className={`${classes.icon}`} />
+                ) : (
+                  <VisibilityOff className={`${classes.icon}`} />
+                )}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </div>
+      <Button
+        className="_btn _btn-primary"
+        type="submit"
+        size="large"
+        disabled={loading}
+        //Element placed after the children.
+        endIcon={loading && <Loop className="ani-spin" />}
+      >
+        Sign Up
+      </Button>
     </form>
   );
-};
+}
 
 export default SignUpForm;
