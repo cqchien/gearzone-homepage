@@ -10,6 +10,7 @@ import {
 import { FaAngleDown, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import "./Header.scss";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../constant/routePath";
 
 export default function Header({ isScroll }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +34,7 @@ export default function Header({ isScroll }) {
 
   useEffect(() => {
     const abortController = new AbortController();
-    
+
     const handleScrollHeader = () => {
       if (window.scrollY >= 10) {
         setResult(result | isScroll);
@@ -95,7 +96,7 @@ export default function Header({ isScroll }) {
                       <Link to="/signin">Sign In</Link>
                     </li>
                     <li>
-                      <Link to="/signup">Sign Up</Link>
+                      <Link to={ROUTES.SIGNUP}>Sign Up</Link>
                     </li>
                   </ul>
                 ) : (

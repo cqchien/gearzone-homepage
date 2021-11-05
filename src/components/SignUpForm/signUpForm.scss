@@ -1,0 +1,61 @@
+form {
+  margin: 30px auto;
+  .form-title {
+    text-align: center;
+  }
+  .form-container {
+    width: 30%;
+    margin: 0 auto;
+    .form-inputGroup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      .form-input {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        border: 1px solid #ced4da;
+        flex: 1;
+        &:focus-visible {
+          color: #495057;
+          background-color: #fff;
+          border-color: #80bdff;
+          outline: 0;
+          box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+        }
+      }
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn-form {
+        padding: 6px 12px;
+        background-color: #027492;
+        color: white;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+// spin
+.ani-spin {
+  -webkit-animation-name: spinAni;
+  animation-name: spinAni;
+  -webkit-animation-duration: 800ms;
+  animation-duration: 800ms;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
