@@ -7,6 +7,7 @@ import TopBar from "./components/TopBar/TopBar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loading from "./components/UI/Loading";
+import Message from "./container/Message";
 
 const extractRoutes = routes.map((route, index) => {
   const { path, exact, component } = route;
@@ -31,6 +32,7 @@ function App() {
         </BrowserRouter>
         {/* <div id="_overlay"></div> */}
         <Footer />
+        <Message />
       </ThemeProvider>
     </>
   );

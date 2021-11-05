@@ -10,7 +10,6 @@ const messageReducer = createSlice({
     open: false,
     message: "",
     type: "",
-    loading: false,
   },
   // An object of "case reducers". Key names will be used to generate actions.
   // Passed to createReducer, so the reducers may safely "mutate" the state they are given.
@@ -20,7 +19,7 @@ const messageReducer = createSlice({
       return { ...state, open: true, ...payload };
     },
 
-    setLoading(state, {payload}) {
+    setLoading(state, { payload }) {
       state.loading = payload;
     },
 
