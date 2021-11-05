@@ -7,7 +7,10 @@ export default function Category() {
   //   (state) => state.categoriesReducer
   // );
 
-  const categoriesInfo = [{ name: "Phone", tree: "phone" }, { name: "Laptop", tree: "phone" }];
+  const categoriesInfo = [
+    { name: "Phone", tree: "phone" },
+    { name: "Laptop", tree: "phone" },
+  ];
 
   console.log(categoriesInfo);
   return (
@@ -21,7 +24,11 @@ export default function Category() {
                 return (
                   <div className="col Category-product" key={item.id}>
                     <a className="card" href="/">
-                      <img src={item.logo} className="card-img-top" alt="..." />
+                      <img
+                        src="/images/logoGZ.png"
+                        className="card-img-top"
+                        alt="..."
+                      />
                       <div className="card-body">
                         <p className="card-text">{item.name}</p>
                       </div>
