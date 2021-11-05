@@ -154,7 +154,7 @@ $res_1200: "only screen and (min-width: 1200px)";
 @include responsive_992 {
  .container {
       .title{
-        font-size: 1rem;
+        font-size: 15px;
       }
       .col-4{
         .logo{
@@ -162,7 +162,7 @@ $res_1200: "only screen and (min-width: 1200px)";
         }
       }
       .content{
-        font-size: 1rem;
+        font-size: 15px;
       }
       .section{
         padding-top: 0rem !important;

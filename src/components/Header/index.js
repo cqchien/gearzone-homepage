@@ -63,10 +63,14 @@ export default function Header({ isScroll }) {
             className="Header_search col-6 "
             style={{ maxWidth: "50%" }}
           >
-            <Input className="Header_input" placeholder="Search..." />
+            <Input
+              className="Header_input"
+              placeholder="Search..."
+              style={{ fontSize: "16px" }}
+            />
             <InputGroupAddon addonType="append">
               <Button className="Header_btnSearch">
-                <span>Search</span>
+                <span style={{ fontSize: "16px" }}>Search</span>
               </Button>
             </InputGroupAddon>
           </InputGroup>
