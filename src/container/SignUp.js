@@ -33,7 +33,7 @@ const SignUp = () => {
     history.push("/");
   }
 
-  const handleSignup = async (account) => {
+  const handleSignUp = async (account) => {
     dispatch(setLoading(true));
     const apiResponse = {};
     const success = apiResponse?.success;
@@ -47,7 +47,7 @@ const SignUp = () => {
       // Because 1000s for show message
       setTimeout(() => {
         setLoading(false);
-        history.push(ROUTES.LOGIN);
+        history.push(ROUTES.SIGNIN);
       }, 1000);
     } else {
       dispatch(setMessage(apiResponse));
@@ -59,7 +59,7 @@ const SignUp = () => {
     <div>
       <SignUpForm
         validationSchema={validationSchema}
-        handleSignup={handleSignup}
+        handleSignUp={handleSignUp}
         loading={loading}
       />
     </div>

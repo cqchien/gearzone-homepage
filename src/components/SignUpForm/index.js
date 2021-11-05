@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 const useStyle = makeStyles(formStyle);
 
-function SignUpForm({ validationSchema, handleRegister, loading }) {
+function SignUpForm({ validationSchema, handleSignUp, loading }) {
   const classes = useStyle();
 
   const {
@@ -43,7 +43,7 @@ function SignUpForm({ validationSchema, handleRegister, loading }) {
     <form
       className={`${classes.root} flex-col`}
       autoComplete="off"
-      onSubmit={handleSubmit(handleRegister)}
+      onSubmit={handleSubmit(handleSignUp)}
     >
       <div className="flex-col">
         <h1 className={`${classes.title} t-center`}>Sign Up</h1>
