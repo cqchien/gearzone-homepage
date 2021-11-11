@@ -26,8 +26,6 @@ export default function TopBar() {
   //   (state) => state.updateInfoUserReducer
   // );
 
-  console.log(objInfoUser._id);
-
   // const toggle = () => setIsOpen(!isOpen);
   return (
     <div className="top-bar">

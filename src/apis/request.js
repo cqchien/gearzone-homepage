@@ -35,7 +35,7 @@ request.interceptors.response.use(
   async function (error) {
     // handle error
     let message;
-    switch (error.response.data.statusCode) {
+    switch (error?.response?.data.statusCode) {
       case 401:
         message = "Email Or Password Incorrect";
         break;

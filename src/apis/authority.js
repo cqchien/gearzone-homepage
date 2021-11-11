@@ -1,6 +1,6 @@
 const getAccessToken = () => {
   const token = JSON.parse(localStorage.getItem("gearZoneToken"));
-  return token?.access.token;
+  return token;
 };
 
 const setToken = (token) => {

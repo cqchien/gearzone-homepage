@@ -8,7 +8,6 @@ const signUpUser = (params) => {
 };
 
 const signInUser = (params) => {
-  console.log(params);
   return request("/auth/login", {
     method: "POST",
     data: params,

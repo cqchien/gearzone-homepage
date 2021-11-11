@@ -12,7 +12,6 @@ export default function Category() {
     { name: "Laptop", tree: "phone" },
   ];
 
-  console.log(categoriesInfo);
   return (
     <div className="Category">
       <div className="container">

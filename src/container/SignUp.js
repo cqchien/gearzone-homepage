@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { ROUTES } from "../constant/routePath";
 import { setMessage } from "../redux/reducers/message.reducer";
+import { signUpUser } from "../apis/account";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Name can not empty"),
@@ -34,8 +35,8 @@ const SignUp = () => {
   }
 
   const handleSignUp = async (account) => {
-    dispatch(setLoading(true));
-    const apiResponse = {};
+    setLoading(true);
+    const apiResponse = await signUpUser(account);
     const success = apiResponse?.success;
     // create new user so status code = 201
     if (success) {
@@ -52,7 +53,7 @@ const SignUp = () => {
     } else {
       dispatch(setMessage(apiResponse));
     }
-    dispatch(setLoading(false));
+    setLoading(false);
   };
 
   return (
