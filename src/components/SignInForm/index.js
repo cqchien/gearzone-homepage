@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 const useStyle = makeStyles(formStyle);
 
-function SignUpForm({ validationSchema, handleSignIn, loading }) {
+function SignInForm({ validationSchema, handleSignIn, loading }) {
   const classes = useStyle();
 
   const {
@@ -100,4 +100,4 @@ function SignUpForm({ validationSchema, handleSignIn, loading }) {
   );
 }
 
-export default SignUpForm;
+export default SignInForm;

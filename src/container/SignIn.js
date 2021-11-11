@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import SignInForm from "../components/SignInForm";
 import * as yup from "yup";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { setMessage } from "../redux/reducers/message.reducer";
+import { signInUser } from "../apis/account";
+import SignInForm from "../components/SignInForm";
+import { setToken } from "../apis/authority";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -32,15 +34,17 @@ const SignIn = () => {
   }
 
   const handleSignIn = async (account) => {
-    dispatch(setLoading(true));
-    const apiResponse = {};
+    setLoading(true);
+    const apiResponse = await signInUser(account);
     const success = apiResponse?.success;
+    const access = apiResponse?.data?.token?.access;
     // create new user so status code = 201
     if (success) {
       const payloadSuccess = {
         message: "Login Successfully",
         type: "success",
       };
+      setToken(access.token);
       dispatch(setMessage(payloadSuccess));
       // Because 1000s for show message
       setTimeout(() => {
@@ -50,7 +54,7 @@ const SignIn = () => {
     } else {
       dispatch(setMessage(apiResponse));
     }
-    dispatch(setLoading(false));
+    setLoading(false);
   };
 
   return (
