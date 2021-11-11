@@ -8,8 +8,6 @@ import {
 import "./TopBar.scss";
 
 export default function TopBar() {
-  let objInfoUser = {};
-
   // const handleLogout = () => {
   //   let answer = window.confirm("Are you sure about that ?");
   //   if (answer) {
