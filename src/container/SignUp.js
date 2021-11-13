@@ -3,7 +3,7 @@ import SignUpForm from "../components/SignUpForm";
 import * as yup from "yup";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { ROUTES } from "../constant/routePath";
 import { setMessage } from "../redux/reducers/message.reducer";
 import { signUpUser } from "../apis/account";
@@ -31,7 +31,7 @@ const SignUp = () => {
 
   // Check if user logged in, user cannot access register page
   if (email) {
-    history.push("/");
+    return <Redirect to={ROUTES.HOME} />;
   }
 
   const handleSignUp = async (account) => {

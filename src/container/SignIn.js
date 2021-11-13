@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { Redirect } from "react-router";
 import { setMessage } from "../redux/reducers/message.reducer";
 import { signInUser } from "../apis/account";
 import SignInForm from "../components/SignInForm";
 import { setToken } from "../apis/authority";
+import { ROUTES } from "../constant/routePath";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -26,11 +27,10 @@ const SignIn = () => {
   const { email } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   // Check if user logged in, user cannot access register page
   if (email) {
-    history.push("/");
+    return <Redirect to={ROUTES.HOME} />;
   }
 
   const handleSignIn = async (account) => {
@@ -48,7 +48,6 @@ const SignIn = () => {
       dispatch(setMessage(payloadSuccess));
       // Because 1000s for show message
       setTimeout(() => {
-        setLoading(false);
         window.location.href = "/";
       }, 1000);
     } else {

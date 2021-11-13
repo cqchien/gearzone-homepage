@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getUserInfo } from "../../apis/user";
 
 export const getUser = createAsyncThunk("user/getUser", async () => {
+  const apiRes = await getUserInfo();
+  if (apiRes.data) {
+    return apiRes.data.user;
+  }
   return {};
 });
 
@@ -12,8 +17,6 @@ const userReducer = createSlice({
     isLogin: false,
     name: "",
     avatar: "",
-    coin: 0,
-    numberOfStars: 0,
     email: "",
   },
 
@@ -26,7 +29,7 @@ const userReducer = createSlice({
       return { ...state, loading: true };
     },
     [getUser.fulfilled]: (state, action) => {
-      const { name, email, avatar, coin, numberOfStars } = action.payload;
+      const { name, email, avatar } = action.payload;
       if (!email) {
         return { ...state, loading: false, isLogin: false };
       }
@@ -36,8 +39,6 @@ const userReducer = createSlice({
         name,
         email,
         avatar,
-        coin,
-        numberOfStars,
       };
     },
   },
