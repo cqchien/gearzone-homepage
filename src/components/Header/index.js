@@ -30,24 +30,23 @@ export default function Header({ isScroll }) {
 
   // const [amountOrderCart, setAmount] = useState(arrayIdOrderCart.length);
 
-  // const signal = abortController.signal;
-
   useEffect(() => {
     const abortController = new AbortController();
-
     const handleScrollHeader = () => {
       if (window.scrollY >= 10) {
-        setResult(result | isScroll);
+        setResult(result || isScroll);
       } else {
         setResult(false);
       }
     };
+
     window.addEventListener("scroll", handleScrollHeader);
-    return function cleanup() {
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollHeader);
       abortController.abort();
     };
-  }, [result, isScroll]);
-
+  }, [isScroll, result]);
   return (
     <div className={result ? "Header scroll" : "Header"}>
       <div className="container">
