@@ -20,7 +20,8 @@
       text-align: center;
     }
     .picture-sp img {
-      width: 25rem;
+      width: 100%;
+      height: 100%;
     }
     .more-pic {
       margin: 1rem 2rem;
@@ -32,8 +33,10 @@
     }
     .info-sp {
       .name {
-        font-size: 1.5rem;
-        font-weight: bold;
+        font-size: 27px;
+        margin: 0px;
+        padding-bottom: 10px;
+        padding-top: 10px;
       }
       .judge {
         .stars {
@@ -90,8 +93,9 @@
         font-weight: bold;
         margin-bottom: 0.5rem;
         .now-price {
-          font-size: 1.5rem;
-          color: #d90429;
+          font-size: 22px;
+          color: #e61010;
+          font-weight: 700;
         }
         .real-price {
           padding-left: 0.5rem;
@@ -99,6 +103,7 @@
           text-align: left;
           font-size: 1rem;
           text-decoration: line-through;
+          font-size: 15px;
           color: #4e4b4b;
         }
       }
@@ -115,7 +120,7 @@
           margin-right: 0.5rem;
         }
         a {
-          color: #027492;
+          color: #0fbdbc;
           font-style: italic;
         }
       }
@@ -188,23 +193,27 @@
           margin: 0;
         }
         .btn-add-cart {
+          cursor: pointer;
+          display: inline-block;
+          font-size: 20px;
+          font-weight: 700;
+          padding: 3px 30px 7px 30px;
           margin: 0rem 0.5rem;
-          background-color: #027492;
+          background-color: #0fbdbc;
           color: white;
-          height: 2.2rem;
-          padding: 0.3rem 3rem;
           text-align: center;
           text-decoration: none;
           display: inline-block;
-          font-size: 14px;
-          font-weight: bold;
           border-radius: 5px;
-          border: 2px solid #027492;
+          border: 3px solid #0fbdbc;
           transition: all 0.5s;
         }
         .btn-add-cart:hover {
-          background-color: #024455;
-          box-shadow: 2px 2px 1px 1px #c4c4c4;
+          background-color: #fff;
+          color: #0fbdbc;
+          border: 3px solid #0fbdbc;
+
+          // box-shadow: 2px 2px 1px 1px #c4c4c4;
         }
       }
       .like-comp {
@@ -216,7 +225,7 @@
         }
         button {
           font-weight: bold;
-          color: #027492;
+          color: #0fbdbc;
           border: none;
           background-color: #fff;
         }
@@ -231,7 +240,7 @@
           font-size: 30px;
           width: 2rem;
           margin: 0rem 0.3rem 0.3rem;
-          color: #027492;
+          color: #0fbdbc;
         }
       }
     }
