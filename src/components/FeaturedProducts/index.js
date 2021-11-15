@@ -42,7 +42,7 @@ export default function FeaturedProducts() {
                   <div className="card-body">
                     <p className="card-title">Samsung Galaxy S21+ 128GB</p>
                     <p className="card-text">22.990.000 ₫</p>
-                    <button className="my-btn">Mua ngay</button>
+                    <Link to="/products/213214213" className="my-btn">Mua ngay</Link>
                   </div>
                 </div>
               </div>

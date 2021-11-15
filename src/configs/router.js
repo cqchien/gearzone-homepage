@@ -5,6 +5,7 @@ const HomePage = React.lazy(() => import("../pages/Home"));
 const ProductsPage = React.lazy(() => import("../pages/Products"));
 const SignUpPage = React.lazy(() => import("../pages/Signup"));
 const SignInPage = React.lazy(() => import("../pages/SignIn"));
+const ProductDetailPage = React.lazy(() => import("../pages/ProductDetail"));
 
 export const routes = [
   {
@@ -26,5 +27,10 @@ export const routes = [
     path: ROUTES.SIGNIN,
     exact: true,
     component: () => <SignInPage />,
+  },
+  {
+    path: ROUTES.PRODUCT_DETAIL,
+    exact: true,
+    component: () => <ProductDetailPage />,
   },
 ];
