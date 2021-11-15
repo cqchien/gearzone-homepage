@@ -20,7 +20,7 @@ const ProductDetail = ({ loading }) => {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container mb-10">
         <div className="row sp no-gutters">
           <div className="col-6 no-gutters">
             <Carousel
@@ -71,13 +71,50 @@ const ProductDetail = ({ loading }) => {
                   <p className="real-price">25.990.000 VND</p>
                 </div>
               </div>
-              <div className="col-9">
+              <div className="col-6">
                 <button
                   className="btn-add-cart"
                   onClick={() => console.log("cart")}
                 >
-                  Thêm vào giỏ hàng
+                  Buy Now
                 </button>
+              </div>
+              <div className="col-6">
+                <button
+                  className="btn-add-cart"
+                  onClick={() => console.log("cart")}
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br style={{ height: "10px" }} />
+        <div className="row">
+          <div className="col-md-12 col-xs-12">
+            <div>
+              <ul className="nav nav-tabs">
+                <li>
+                  <p className="pro-desc">Description</p>
+                </li>
+              </ul>
+
+              <div className="tab-content">
+                <h3>
+                  <strong>Specifications:</strong>
+                </h3>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>CPU</td>
+                      <td>
+                        Ryzen 5 5600H ( 3.30 GHz - 4.20 GHz, Hexa-core (6 Core™)
+                        , Cache 16 MB )
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

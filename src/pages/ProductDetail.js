@@ -3,7 +3,7 @@ import ProductDetail from "../components/ProductDetail";
 
 const ProductDetailPage = () => {
   return (
-    <div style={{height: "100vh"}}>
+    <div className="h-100 m-auto">
       <ProductDetail />
     </div>
   );
