@@ -1,8 +1,8 @@
 export const ROUTES = {
   HOME: "/",
-  PRODUCTS: "/products",
+  CART: "/cart",
   SIGNUP: "/signup",
   SIGNIN: "/signin",
   ACCOUNT: '/account',
-  PRODUCT_DETAIL: "/products/:id"
+
 };

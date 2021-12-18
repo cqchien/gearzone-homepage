@@ -1,5 +1,4 @@
 import {
-  MenuOutlined,
   ReconciliationOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
@@ -9,7 +8,6 @@ import {
   AutoComplete,
   Badge,
   Button,
-  Drawer,
   Dropdown,
   Input,
   Menu,
@@ -18,9 +16,9 @@ import Avatar from 'antd/lib/avatar/avatar';
 import defaultAvt from '../../assets/images/default-avt.png';
 import logoUrl from '../../assets/images/logo.png';
 import { formatQueryString, reduceProductName, autoSearchOptions } from '../../helpers';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constant/routePath';
 import './index.scss';
 
@@ -35,43 +33,12 @@ function Header() {
   const user = useSelector((state) => state.user);
   const carts = useSelector((state) => state.carts);
   const options = autoSearchOptions();
-  const locations = useLocation().pathname;
-  const initLink = '/search?keyword=';
   const [linkSearch, setLinkSearch] = useState('');
-  const [isMdDevice, setIsMdDevice] = useState(false);
-  const [drawerVisible, setDrawerVisible] = useState(false);
-  const [isSmDevice, setIsSmDevice] = useState(false);
 
   // event: log out
   const onLogout = () => {
     console.log("log out")
   };
-
-  // event: get event change window width
-  useEffect(() => {
-    const w = window.innerWidth;
-    if (w <= 992) setIsMdDevice(true);
-    if (w <= 480) setIsSmDevice(true);
-    window.addEventListener('resize', function () {
-      const width = window.innerWidth;
-      if (width <= 992) {
-        setIsMdDevice(true);
-      } else {
-        setIsMdDevice(false);
-      }
-      if (width <= 480) setIsSmDevice(true);
-      else setIsSmDevice(false);
-    });
-
-    return () => {
-      window.removeEventListener('resize');
-    };
-  }, []);
-
-  // event: close drawer to redirect
-  useEffect(() => {
-    setDrawerVisible(false);
-  }, [locations]);
 
   // Menu for user action
   const userActionMenu = (
@@ -113,14 +80,14 @@ function Header() {
   return (
     <div
       className="wrap-header container-fluid bg-white w-100vw"
-      style={{ height: isSmDevice ? 76 : 104 }}>
+      style={{ height: 104 }}>
       <div className="header container h-100 d-flex justify-content-between align-i-center">
         {/* Logo */}
         <Link to="/">
           <img
             src={logoUrl}
-            width={isSmDevice ? 78 : 112}
-            height={isSmDevice ? 36 : 48}
+            width={112}
+            height={48}
             alt='img'
           />
         </Link>
@@ -140,147 +107,71 @@ function Header() {
               }>
               <Input
                 maxLength={200}
-                size={isSmDevice ? 'middle' : 'large'}
-                placeholder={!isSmDevice ? 'Nhập từ khoá cần tìm' : 'Tìm kiếm'}
+                size={'large'}
+                placeholder={'Tìm kiếm'}
               />
             </AutoComplete>
-            <Button type="primary" size={isSmDevice ? 'middle' : 'large'}>
-              <Link to={linkSearch === '' ? locations : initLink + linkSearch}>
-                <SearchOutlined /> {!isSmDevice ? 'Tìm kiếm' : ''}
+            <Button type="primary" size={'large'}>
+              <Link to='/'>
+                <SearchOutlined /> {'Tìm kiếm'}
               </Link>
             </Button>
           </div>
         </div>
 
         {/* thanh công cụ navbar */}
-        {isMdDevice ? (
-          <>
-            <Drawer
-              title="Menu"
-              placement="right"
-              closable={true}
-              onClose={() => setDrawerVisible(false)}
-              maskClosable={true}
-              visible={drawerVisible}>
-              <ul className="m-0">
-                <li className="m-b-18">
-                  <Dropdown overlay={userActionMenu} placement="bottomLeft">
-                    <Link
-                      to={
-                        isAuth
-                          ? `${ROUTES.ACCOUNT}/`
-                          : ROUTES.LOGIN
-                      }>
-                      {!isAuth ? (
-                        <div className="d-flex navbar-tool-item p-l-0">
-                          <UserOutlined className="icon m-r-12" />
-                          <span className="title">Đăng nhập</span>
-                        </div>
-                      ) : (
-                        <div className="d-flex navbar-tool-item p-l-0">
-                          <Avatar src={defaultAvt} className="m-r-12" />
-                          <span className="title">
-                            {reduceProductName(user.fullName, 12)}
-                          </span>
-                        </div>
-                      )}
-                    </Link>
-                  </Dropdown>
-                </li>
-                <li className="m-b-18">
-                  <Link
-                    className="d-flex navbar-tool-item p-l-0"
-                    to={ROUTES.ACCOUNT + '/orders'}>
-                    <ReconciliationOutlined className="icon m-r-12" />
-                    <span className="title">Đơn hàng</span>
-                  </Link>
-                </li>
 
-                <li className="m-b-18">
-                  <Dropdown
-                    placement="bottomLeft"
-                    arrow>
-                    <Link
-                      className="d-flex navbar-tool-item p-l-0"
-                      to={ROUTES.CART}>
-                      <ShoppingCartOutlined className="icon m-r-12" />
-                      <Badge
-                        className="pos-absolute"
-                        size="default"
-                        style={{ color: '#fff' }}
-                        count={totalItemCarts(carts)}
-                        overflowCount={9}
-                        offset={[18, -10]}
-                      />
-
-                      <span className="title">Giỏ hàng</span>
-                    </Link>
-                  </Dropdown>
-                </li>
-              </ul>
-            </Drawer>
-            <MenuOutlined
-              className="menu-icon"
-              onClick={() => setDrawerVisible(true)}
-            />
-          </>
-        ) : (
-          <ul className="d-flex m-0">
-            <li>
+        <ul className="d-flex m-0">
+          <li>
+            <Link
+              className="d-flex flex-direction-column navbar-tool-item p-l-0"
+              to={ROUTES.ACCOUNT + '/orders'}>
+              <ReconciliationOutlined className="icon" />
+              <span className="title">Đơn hàng</span>
+            </Link>
+          </li>
+          <li>
+            <Dropdown overlay={userActionMenu} placement="bottomRight">
               <Link
-                className="d-flex flex-direction-column navbar-tool-item p-l-0"
-                to={ROUTES.ACCOUNT + '/orders'}>
-                <ReconciliationOutlined className="icon" />
-                <span className="title">Đơn hàng</span>
+                to='/'>
+                {!isAuth ? (
+                  <div className="d-flex flex-direction-column navbar-tool-item">
+                    <UserOutlined className="icon" />
+                    <span className="title">Đăng nhập</span>
+                  </div>
+                ) : (
+                  <div className="d-flex flex-direction-column navbar-tool-item">
+                    <Avatar src={defaultAvt} className="m-auto" />
+                    <span className="title">
+                      {reduceProductName(user.fullName, 12)}
+                    </span>
+                  </div>
+                )}
               </Link>
-            </li>
-            <li>
-              <Dropdown overlay={userActionMenu} placement="bottomRight">
-                <Link
-                  to={
-                    isAuth
-                      ? `${ROUTES.ACCOUNT}/`
-                      : ROUTES.LOGIN
-                  }>
-                  {!isAuth ? (
-                    <div className="d-flex flex-direction-column navbar-tool-item">
-                      <UserOutlined className="icon" />
-                      <span className="title">Đăng nhập</span>
-                    </div>
-                  ) : (
-                    <div className="d-flex flex-direction-column navbar-tool-item">
-                      <Avatar src={defaultAvt} className="m-auto" />
-                      <span className="title">
-                        {reduceProductName(user.fullName, 12)}
-                      </span>
-                    </div>
-                  )}
-                </Link>
-              </Dropdown>
-            </li>
-            <li>
-              <Dropdown
-                placement="bottomRight"
-                arrow>
-                <Link
-                  className="d-flex flex-direction-column navbar-tool-item"
-                  to={ROUTES.CART}>
-                  <ShoppingCartOutlined className="icon" />
-                  <Badge
-                    className="pos-absolute"
-                    size="default"
-                    style={{ color: '#fff' }}
-                    count={totalItemCarts(carts)}
-                    overflowCount={9}
-                    offset={[36, -5]}
-                  />
+            </Dropdown>
+          </li>
+          <li>
+            <Dropdown
+              placement="bottomRight"
+              arrow>
+              <Link
+                className="d-flex flex-direction-column navbar-tool-item"
+                to={ROUTES.CART}>
+                <ShoppingCartOutlined className="icon" />
+                <Badge
+                  className="pos-absolute"
+                  size="default"
+                  style={{ color: '#fff' }}
+                  count={totalItemCarts(carts)}
+                  overflowCount={9}
+                  offset={[36, -5]}
+                />
 
-                  <span className="title">Giỏ hàng</span>
-                </Link>
-              </Dropdown>
-            </li>
-          </ul>
-        )}
+                <span className="title">Giỏ hàng</span>
+              </Link>
+            </Dropdown>
+          </li>
+        </ul>
       </div>
     </div >
   );
