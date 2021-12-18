@@ -1,0 +1,19 @@
+.footer {
+  &-contact {
+    background-color: #249f8f;
+    * {
+      color: #fff;
+    }
+  }
+  .phone-icon {
+    font-size: 48px;
+  }
+  .social-item {
+    &:hover,
+    &:active {
+      transform: scale(1.5);
+      transition: all 0.35s;
+    }
+  }
+}
+
