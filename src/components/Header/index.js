@@ -20,6 +20,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constant/routePath';
+import Cart from '../Cart/index';
 import './index.scss';
 
 function totalItemCarts(carts) {
@@ -31,7 +32,7 @@ function totalItemCarts(carts) {
 function Header() {
   const { isAuth } = true;
   const user = useSelector((state) => state.user);
-  const carts = useSelector((state) => state.carts);
+  const carts = [];
   const options = autoSearchOptions();
   const [linkSearch, setLinkSearch] = useState('');
 
@@ -152,6 +153,7 @@ function Header() {
           </li>
           <li>
             <Dropdown
+              overlay={<Cart list={carts} />}
               placement="bottomRight"
               arrow>
               <Link

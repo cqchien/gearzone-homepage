@@ -2,7 +2,7 @@
 const formatQueryString = (str = '') => {
   let result = str;
   // xoá tất cả ký tự đặc biệt
-  result = str.replace(/[`~!@#$%^&*()_|+\-=?;:<>\{\}\[\]\\\/]/gi, '');
+  result = str.replace(/[`~!@#$%^&*()_|+\-=?;:<>\{\}\[\]\\\/`]/gi, '');
   // thay khoảng trắng thành dấu cộng
   result = result.replace(/[\s]/gi, '+');
   return result;
@@ -34,8 +34,18 @@ const autoSearchOptions = () => {
   return result;
 };
 
+// fn: hàm format giá sản phẩm
+const formatProductPrice = (price) => {
+  return new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'VND',
+  }).format(price);
+};
+
+
 export {
   formatQueryString,
   reduceProductName,
-  autoSearchOptions
+  autoSearchOptions,
+  formatProductPrice
 };
