@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MessageAlert from "../components/MessageAlert";
 import { closeMessage } from "../redux/reducers/message.reducer";
 
 const Message = () => {
@@ -12,12 +11,7 @@ const Message = () => {
     dispatch(closeMessage());
   };
   return (
-    <MessageAlert
-      open={open}
-      type={type}
-      message={message}
-      handleClose={handleClose}
-    />
+    <div>Mess</div>
   );
 };
 

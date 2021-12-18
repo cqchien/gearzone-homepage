@@ -3,5 +3,6 @@ export const ROUTES = {
   PRODUCTS: "/products",
   SIGNUP: "/signup",
   SIGNIN: "/signin",
+  ACCOUNT: '/account',
   PRODUCT_DETAIL: "/products/:id"
 };

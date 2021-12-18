@@ -1,126 +1,289 @@
-import React, { useEffect, useState } from "react";
 import {
-  Navbar,
-  InputGroup,
-  InputGroupAddon,
-  Input,
+  MenuOutlined,
+  ReconciliationOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
+  AutoComplete,
+  Badge,
   Button,
-  Collapse,
-} from "reactstrap";
-import { FaAngleDown, FaShoppingCart, FaUserCircle } from "react-icons/fa";
-import "./Header.scss";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../constant/routePath";
+  Drawer,
+  Dropdown,
+  Input,
+  Menu,
+} from 'antd';
+import Avatar from 'antd/lib/avatar/avatar';
+import defaultAvt from '../../assets/images/default-avt.png';
+import logoUrl from '../../assets/images/logo.png';
+import { formatQueryString, reduceProductName, autoSearchOptions } from '../../helpers';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { ROUTES } from '../../constant/routePath';
+import './index.scss';
 
-export default function Header({ isScroll }) {
-  const [isOpen, setIsOpen] = useState(false);
+function totalItemCarts(carts) {
+  if (carts) {
+    return carts.reduce((total, item) => total + item.amount, 0);
+  }
+}
 
-  // Wish list
-  // let wishList = localStorage.getItem("wishList")
-  //   ? JSON.parse(localStorage.getItem("wishList"))
-  //   : [];
+function Header() {
+  const { isAuth } = true;
+  const user = useSelector((state) => state.user);
+  const carts = useSelector((state) => state.carts);
+  const options = autoSearchOptions();
+  const locations = useLocation().pathname;
+  const initLink = '/search?keyword=';
+  const [linkSearch, setLinkSearch] = useState('');
+  const [isMdDevice, setIsMdDevice] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [isSmDevice, setIsSmDevice] = useState(false);
 
-  // Order Cart
-  // let orderCart = localStorage.getItem("orderCart")
-  //   ? JSON.parse(localStorage.getItem("orderCart"))
-  //   : [];
-  // let arrayIdOrderCart = Object.keys(orderCart);
+  // event: log out
+  const onLogout = () => {
+    console.log("log out")
+  };
 
-  const [result, setResult] = useState(false);
-
-  // const [amountOrderCart, setAmount] = useState(arrayIdOrderCart.length);
-
+  // event: get event change window width
   useEffect(() => {
-    const abortController = new AbortController();
-    const handleScrollHeader = () => {
-      if (window.scrollY >= 10) {
-        setResult(result || isScroll);
+    const w = window.innerWidth;
+    if (w <= 992) setIsMdDevice(true);
+    if (w <= 480) setIsSmDevice(true);
+    window.addEventListener('resize', function () {
+      const width = window.innerWidth;
+      if (width <= 992) {
+        setIsMdDevice(true);
       } else {
-        setResult(false);
+        setIsMdDevice(false);
       }
-    };
-
-    window.addEventListener("scroll", handleScrollHeader);
+      if (width <= 480) setIsSmDevice(true);
+      else setIsSmDevice(false);
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScrollHeader);
-      abortController.abort();
+      window.removeEventListener('resize');
     };
-  }, [isScroll, result]);
+  }, []);
+
+  // event: close drawer to redirect
+  useEffect(() => {
+    setDrawerVisible(false);
+  }, [locations]);
+
+  // Menu for user action
+  const userActionMenu = (
+    <Menu className="m-t-24" style={{ width: 244 }}>
+      <Menu.Item>
+        {isAuth ? (
+          <Button
+            onClick={onLogout}
+            size="large"
+            className="w-100"
+            type="primary"
+            danger={isAuth}>
+            Đăng xuất
+          </Button>
+        ) : (
+          <Button size="large" className="w-100" type="primary">
+            <Link to={ROUTES.SIGNIN}>Đăng nhập</Link>
+          </Button>
+        )}
+      </Menu.Item>
+      <Menu.Item>
+        <Link to={ROUTES.SIGNUP}>
+          <Button size="large" className="w-100 btn-secondary" type="default">
+            Đăng ký
+          </Button>
+        </Link>
+      </Menu.Item>
+      {isAuth && (
+        <Menu.Item>
+          <Button size="large" className="w-100 btn-secondary" type="default">
+            <Link to={ROUTES.ACCOUNT + '/'}>Quản lý Tài khoản</Link>
+          </Button>
+        </Menu.Item>
+      )}
+    </Menu>
+  );
+
+  // rendering...
   return (
-    <div className={result ? "Header scroll" : "Header"}>
-      <div className="container">
-        <Navbar className="Header_navbar row">
-          <Link to="/" className="Header_navbrand col-3">
-            <img
-              src="/images/logoGZ.png"
-              alt="Logo"
-              className={result ? "imgLogoScroll" : "imgLogo"}
-            ></img>
-          </Link>
-          <InputGroup
-            className="Header_search col-6 "
-            style={{ maxWidth: "50%" }}
-          >
-            <Input
-              className="Header_input"
-              placeholder="Search..."
-              style={{ fontSize: "16px" }}
-            />
-            <InputGroupAddon addonType="append">
-              <Button className="Header_btnSearch">
-                <span style={{ fontSize: "16px" }}>Search</span>
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
-          <div className="Header_icon col-3">
-            <Link className=" Header_shoppingcart" to="/myshoppingcart">
-              <div className="shoppingcart_container">
-                <FaShoppingCart className="Header_iconShoppingCart"></FaShoppingCart>
-                <span className="Header_amountShoppingCart">
-                  {/* {amountOrderCart} */} 0
-                </span>
-              </div>
-              <span className="Header_shoppingcart-name">Cart</span>
-            </Link>
-            <div className=" Header_shoppingcart">
-              <div className="shoppingcart_container">
-                <FaUserCircle className="Header_iconShoppingCart"></FaUserCircle>
-              </div>
-              <span className="Header_shoppingcart-name">Account</span>
-              <FaAngleDown
-                className="TopBar_Right-BtnIcon"
-                onClick={() => setIsOpen(!isOpen)}
-              ></FaAngleDown>
-              <Collapse className="Header-Collapse" isOpen={isOpen}>
-                {localStorage.getItem("auth_token") === null ? (
-                  <ul>
-                    <li>
-                      <Link to="/signin">Sign In</Link>
-                    </li>
-                    <li>
-                      <Link to={ROUTES.SIGNUP}>Sign Up</Link>
-                    </li>
-                  </ul>
-                ) : (
-                  <ul>
-                    <li>
-                      <Link to="/user" onClick={() => console.log("user")}>
-                        Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/logout" onClick={() => console.log("login")}>
-                        Log Out
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </Collapse>
-            </div>
+    <div
+      className="wrap-header container-fluid bg-white w-100vw"
+      style={{ height: isSmDevice ? 76 : 104 }}>
+      <div className="header container h-100 d-flex justify-content-between align-i-center">
+        {/* Logo */}
+        <Link to="/">
+          <img
+            src={logoUrl}
+            width={isSmDevice ? 78 : 112}
+            height={isSmDevice ? 36 : 48}
+            alt='img'
+          />
+        </Link>
+
+        {/* thanh tìm kiếm */}
+        <div className="t-right search-bar-wrapper w-100">
+          <div className="search-bar pos-relative">
+            <AutoComplete
+              className="trans-center w-100"
+              options={options}
+              onChange={(value) =>
+                setLinkSearch(formatQueryString(value))
+              }
+              filterOption={(inputValue, option) =>
+                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+                -1
+              }>
+              <Input
+                maxLength={200}
+                size={isSmDevice ? 'middle' : 'large'}
+                placeholder={!isSmDevice ? 'Nhập từ khoá cần tìm' : 'Tìm kiếm'}
+              />
+            </AutoComplete>
+            <Button type="primary" size={isSmDevice ? 'middle' : 'large'}>
+              <Link to={linkSearch === '' ? locations : initLink + linkSearch}>
+                <SearchOutlined /> {!isSmDevice ? 'Tìm kiếm' : ''}
+              </Link>
+            </Button>
           </div>
-        </Navbar>
+        </div>
+
+        {/* thanh công cụ navbar */}
+        {isMdDevice ? (
+          <>
+            <Drawer
+              title="Menu"
+              placement="right"
+              closable={true}
+              onClose={() => setDrawerVisible(false)}
+              maskClosable={true}
+              visible={drawerVisible}>
+              <ul className="m-0">
+                <li className="m-b-18">
+                  <Dropdown overlay={userActionMenu} placement="bottomLeft">
+                    <Link
+                      to={
+                        isAuth
+                          ? `${ROUTES.ACCOUNT}/`
+                          : ROUTES.LOGIN
+                      }>
+                      {!isAuth ? (
+                        <div className="d-flex navbar-tool-item p-l-0">
+                          <UserOutlined className="icon m-r-12" />
+                          <span className="title">Đăng nhập</span>
+                        </div>
+                      ) : (
+                        <div className="d-flex navbar-tool-item p-l-0">
+                          <Avatar src={defaultAvt} className="m-r-12" />
+                          <span className="title">
+                            {reduceProductName(user.fullName, 12)}
+                          </span>
+                        </div>
+                      )}
+                    </Link>
+                  </Dropdown>
+                </li>
+                <li className="m-b-18">
+                  <Link
+                    className="d-flex navbar-tool-item p-l-0"
+                    to={ROUTES.ACCOUNT + '/orders'}>
+                    <ReconciliationOutlined className="icon m-r-12" />
+                    <span className="title">Đơn hàng</span>
+                  </Link>
+                </li>
+
+                <li className="m-b-18">
+                  <Dropdown
+                    placement="bottomLeft"
+                    arrow>
+                    <Link
+                      className="d-flex navbar-tool-item p-l-0"
+                      to={ROUTES.CART}>
+                      <ShoppingCartOutlined className="icon m-r-12" />
+                      <Badge
+                        className="pos-absolute"
+                        size="default"
+                        style={{ color: '#fff' }}
+                        count={totalItemCarts(carts)}
+                        overflowCount={9}
+                        offset={[18, -10]}
+                      />
+
+                      <span className="title">Giỏ hàng</span>
+                    </Link>
+                  </Dropdown>
+                </li>
+              </ul>
+            </Drawer>
+            <MenuOutlined
+              className="menu-icon"
+              onClick={() => setDrawerVisible(true)}
+            />
+          </>
+        ) : (
+          <ul className="d-flex m-0">
+            <li>
+              <Link
+                className="d-flex flex-direction-column navbar-tool-item p-l-0"
+                to={ROUTES.ACCOUNT + '/orders'}>
+                <ReconciliationOutlined className="icon" />
+                <span className="title">Đơn hàng</span>
+              </Link>
+            </li>
+            <li>
+              <Dropdown overlay={userActionMenu} placement="bottomRight">
+                <Link
+                  to={
+                    isAuth
+                      ? `${ROUTES.ACCOUNT}/`
+                      : ROUTES.LOGIN
+                  }>
+                  {!isAuth ? (
+                    <div className="d-flex flex-direction-column navbar-tool-item">
+                      <UserOutlined className="icon" />
+                      <span className="title">Đăng nhập</span>
+                    </div>
+                  ) : (
+                    <div className="d-flex flex-direction-column navbar-tool-item">
+                      <Avatar src={defaultAvt} className="m-auto" />
+                      <span className="title">
+                        {reduceProductName(user.fullName, 12)}
+                      </span>
+                    </div>
+                  )}
+                </Link>
+              </Dropdown>
+            </li>
+            <li>
+              <Dropdown
+                placement="bottomRight"
+                arrow>
+                <Link
+                  className="d-flex flex-direction-column navbar-tool-item"
+                  to={ROUTES.CART}>
+                  <ShoppingCartOutlined className="icon" />
+                  <Badge
+                    className="pos-absolute"
+                    size="default"
+                    style={{ color: '#fff' }}
+                    count={totalItemCarts(carts)}
+                    overflowCount={9}
+                    offset={[36, -5]}
+                  />
+
+                  <span className="title">Giỏ hàng</span>
+                </Link>
+              </Dropdown>
+            </li>
+          </ul>
+        )}
       </div>
-    </div>
+    </div >
   );
 }
+
+export default Header;

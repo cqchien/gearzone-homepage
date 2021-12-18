@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "../components/Slider/index";
 import Category from "../components/Category/index";
 import FeaturedProducts from "../components/FeaturedProducts/index";
 import HotSellingAccessories from "../components/HotSellingAccessories/index";
@@ -7,7 +6,6 @@ import HotSellingAccessories from "../components/HotSellingAccessories/index";
 export default function Home() {
   return (
     <>
-      <Slider />
       <Category />
       <FeaturedProducts />
       <HotSellingAccessories

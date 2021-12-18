@@ -1,32 +1,7 @@
 @import "./reset.scss";
 @import "./container.scss";
+@import "./input.scss";
 @import "./layout.scss";
 @import "./text.scss";
+@import "./error.scss";
 @import "./atomic.scss";
-@import "./animation.scss";
-
-@import "bootstrap/dist/css/bootstrap.min.css";
-
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 16px !important;
-  a {
-    &:hover {
-      text-decoration: none;
-    }
-  }
-  font-family: "Segoe UI", Helvetica, Arial, sans-serif, sans-serif;
-  line-height: 1.42857143;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-* {
-  scroll-behavior: smooth;
-}
