@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import configStore from './configs/configureStore';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "./redux/store";
 
+const store = configStore();
 ReactDOM.render(
   // makes the Redux store available to any nested components that need to access the Redux store.
   <Provider store={store}>
