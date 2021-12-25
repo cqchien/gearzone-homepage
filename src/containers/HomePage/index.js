@@ -1,8 +1,10 @@
-import { Card, Carousel, Col, Pagination, Row, Spin } from 'antd';
+import { Carousel, Col, Pagination, Row, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import productApi from '../../apis/productApi';
 import Filter from '../../components/Filter';
+import ProductView from '../../components/ProductView';
+
 
 // danh sách thương hiệu
 const brandList = [
@@ -51,28 +53,27 @@ function showBrandList(list) {
   ));
 }
 
-  // fn: Hiển thị sản phẩm
-  const showProducts = (list) => {
-    list = list ? list : [];
-    return list.map((product, index) => {
-      const { avt, name, price, discount, stock, _id } = product;
-      return (
-        <Col key={index} span={24} sm={12} lg={8} xl={6}>
-          <Link to={`/product/${_id}`}>
-            {/* <ProductView
-              className="m-auto"
-              name={name}
-              price={price}
-              stock={stock}
-              avtUrl={avt}
-              discount={discount}
-              height={400}
-            /> */}
-          </Link>
-        </Col>
-      );
-    });
-  };
+// fn: Hiển thị sản phẩm
+const showProducts = (list) => {
+  list = list ? list : [];
+  return list.map((product, index) => {
+    const { images, name, price, quantity, _id } = product;
+    return (
+      <Col key={index} span={24} sm={12} lg={8} xl={6}>
+        <Link to={`/product/${_id}`}>
+          <ProductView
+            className="m-auto"
+            name={name}
+            price={price}
+            quantity={quantity}
+            avtUrl={images}
+            height={400}
+          />
+        </Link>
+      </Col>
+    );
+  });
+};
 
 function HomePage() {
 
@@ -83,13 +84,11 @@ function HomePage() {
 
   // lấy sản phẩm
   useEffect(() => {
-    let isSubscribe = true;
     setIsLoading(true);
     async function getAllProducts() {
       try {
         const response = await productApi.getAllProducts(page, 8);
-        console.log(response);
-        if (response && isSubscribe) {
+        if (response && response.success) {
           const { data, count } = response.data;
           setList(data);
           setTotal(count);
@@ -102,7 +101,6 @@ function HomePage() {
 
     getAllProducts();
 
-    return () => (isSubscribe = false);
   }, [page]);
 
   return (
