@@ -2,7 +2,7 @@
 const formatQueryString = (str = '') => {
   let result = str;
   // xoá tất cả ký tự đặc biệt
-  result = str.replace(/[`~!@#$%^&*()_|+\-=?;:<>\{\}\[\]\\\/`]/gi, '');
+  result = str.replace(/[`~!@#$%^&*()_|+\-=?;:<>\\{\\}\\[\]\\\\/`]/gi, '');
   // thay khoảng trắng thành dấu cộng
   result = result.replace(/[\s]/gi, '+');
   return result;

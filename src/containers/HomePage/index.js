@@ -1,6 +1,7 @@
 import { Card, Carousel, Col, Pagination, Row, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Filter from '../../components/Filter';
 
 // danh sách thương hiệu
 const brandList = [
@@ -66,7 +67,7 @@ const showProducts = (list) => {
 };
 
 function HomePage() {
-  
+
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -103,7 +104,7 @@ function HomePage() {
           />
         </Carousel>
         <div className="filter-wrapper trans-center container w-100 h-80">
-    
+          < Filter />
         </div>
       </div>
       <Row className="container">

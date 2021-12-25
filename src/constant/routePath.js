@@ -4,5 +4,5 @@ export const ROUTES = {
   SIGNUP: "/signup",
   SIGNIN: "/signin",
   ACCOUNT: '/account',
-
+  FILTER: '/filter',
 };
