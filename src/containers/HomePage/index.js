@@ -1,6 +1,7 @@
 import { Card, Carousel, Col, Pagination, Row, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import productApi from '../../apis/productApi';
 import Filter from '../../components/Filter';
 
 // danh sách thương hiệu
@@ -37,7 +38,6 @@ const brandList = [
 
 // fn: hiển thị danh sách thương hiệu
 function showBrandList(list) {
-  console.log(list);
   return list.map((item, index) => (
     <Col span={12} md={6} key={index}>
       <div className="brand-item t-center">
@@ -51,20 +51,28 @@ function showBrandList(list) {
   ));
 }
 
-// fn: Hiển thị sản phẩm
-const showProducts = (list) => {
-  list = list ? list : [];
-  return list.map((product, index) => {
-    const { avt, name, price, discount, stock, _id } = product;
-    return (
-      <Col key={index} span={24} sm={12} lg={8} xl={6}>
-        <Link to={`/product/${_id}`}>
-          <Card />
-        </Link>
-      </Col>
-    );
-  });
-};
+  // fn: Hiển thị sản phẩm
+  const showProducts = (list) => {
+    list = list ? list : [];
+    return list.map((product, index) => {
+      const { avt, name, price, discount, stock, _id } = product;
+      return (
+        <Col key={index} span={24} sm={12} lg={8} xl={6}>
+          <Link to={`/product/${_id}`}>
+            {/* <ProductView
+              className="m-auto"
+              name={name}
+              price={price}
+              stock={stock}
+              avtUrl={avt}
+              discount={discount}
+              height={400}
+            /> */}
+          </Link>
+        </Col>
+      );
+    });
+  };
 
 function HomePage() {
 
@@ -79,7 +87,8 @@ function HomePage() {
     setIsLoading(true);
     async function getAllProducts() {
       try {
-        const response = [];
+        const response = await productApi.getAllProducts(page, 8);
+        console.log(response);
         if (response && isSubscribe) {
           const { data, count } = response.data;
           setList(data);
