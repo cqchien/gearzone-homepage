@@ -15,9 +15,11 @@ import * as Yup from 'yup';
 import './index.scss';
 import { setToken } from '../../apis/authority';
 import { ROUTES } from '../../constant/routePath';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   // fn: xử lý khi đăng nhập thành công
@@ -25,11 +27,10 @@ function Login() {
     message.success('Đăng nhập thành công');
 
     setToken(data.token);
-
     dispatch(setIsAuth(true));
     setTimeout(() => {
-      window.location.href = ROUTES.HOME;
-    }, 500);
+      history.push(ROUTES.HOME)
+    }, 200);
 
   };
 

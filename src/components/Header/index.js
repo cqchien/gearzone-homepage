@@ -17,11 +17,13 @@ import defaultAvt from '../../assets/images/default-avt.png';
 import logoUrl from '../../assets/images/logo.png';
 import { formatQueryString, reduceProductName, autoSearchOptions } from '../../helpers';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constant/routePath';
 import Cart from '../Cart/index';
 import './index.scss';
+import { setIsAuth } from '../../reducers/auth';
+import { removeToken } from '../../apis/authority';
 
 function totalItemCarts(carts) {
   if (carts) {
@@ -30,15 +32,22 @@ function totalItemCarts(carts) {
 }
 
 function Header() {
-  const { isAuth } = true;
+  const dispatch = useDispatch();
+
+  const { isAuth } = useSelector((state) => state.authenticate);
   const user = useSelector((state) => state.user);
+
   const carts = [];
   const options = autoSearchOptions();
   const [linkSearch, setLinkSearch] = useState('');
 
   // event: log out
   const onLogout = () => {
-    console.log("log out")
+    removeToken();
+    dispatch(setIsAuth(false));
+
+    window.location.reload();
+
   };
 
   // Menu for user action
@@ -61,11 +70,11 @@ function Header() {
         )}
       </Menu.Item>
       <Menu.Item>
-        <Link to={ROUTES.SIGNUP}>
-          <Button size="large" className="w-100 btn-secondary" type="default">
+        <Button size="large" className="w-100 btn-secondary" type="default">
+          <Link to={ROUTES.SIGNUP}>
             Đăng ký
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </Menu.Item>
       {isAuth && (
         <Menu.Item>
@@ -133,22 +142,25 @@ function Header() {
           </li>
           <li>
             <Dropdown overlay={userActionMenu} placement="bottomRight">
-              <Link
-                to='/'>
-                {!isAuth ? (
+
+              {!isAuth ? (
+                <Link to={ROUTES.SIGNIN}>
                   <div className="d-flex flex-direction-column navbar-tool-item">
                     <UserOutlined className="icon" />
                     <span className="title">Đăng nhập</span>
                   </div>
-                ) : (
+                </Link>
+
+              ) : (
+                <Link to={ROUTES.ACCOUNT}>
                   <div className="d-flex flex-direction-column navbar-tool-item">
                     <Avatar src={defaultAvt} className="m-auto" />
                     <span className="title">
-                      {reduceProductName(user.fullName, 12)}
+                      {reduceProductName(user.name, 12)}
                     </span>
                   </div>
-                )}
-              </Link>
+                </Link>
+              )}
             </Dropdown>
           </li>
           <li>
