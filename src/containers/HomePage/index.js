@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import productApi from '../../apis/productApi';
 import Filter from '../../components/Filter';
 import ProductView from '../../components/ProductView';
+import { ROUTES } from '../../constant/routePath';
 
 
 // danh sách thương hiệu
@@ -58,15 +59,16 @@ const showProducts = (list) => {
   list = list ? list : [];
   return list.map((product, index) => {
     const { images, name, price, quantity, _id } = product;
+    
     return (
       <Col key={index} span={24} sm={12} lg={8} xl={6}>
-        <Link to={`/product/${_id}`}>
+        <Link to={`${ROUTES.PRODUCT}/${_id}`}>
           <ProductView
             className="m-auto"
             name={name}
             price={price}
             quantity={quantity}
-            avtUrl={images}
+            avtUrl={images.split(',')[0]}
             height={400}
           />
         </Link>
