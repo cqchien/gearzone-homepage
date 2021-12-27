@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from "react";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import 'antd/dist/antd.css';
 import "./style/index.scss";
 import TopBar from "./components/TopBar/TopBar";
@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserRequest } from './reducers/user';
 import { getIsAuth } from "./reducers/auth";
 import GlobalLoading from "./components/Loading/Global";
+import NotFound from "./components/NotFound";
 
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
           <Header />
           <Switch>
             {renderRoutes(routes)}
+            <Route>
+              <NotFound />
+            </Route>
           </Switch>
           <Footer />
         </div>
