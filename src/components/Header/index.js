@@ -53,8 +53,8 @@ function Header() {
   // Menu for user action
   const userActionMenu = (
     <Menu className="m-t-24" style={{ width: 244 }}>
-      <Menu.Item>
-        {isAuth ? (
+      {isAuth ? (
+        <Menu.Item>
           <Button
             onClick={onLogout}
             size="large"
@@ -63,19 +63,25 @@ function Header() {
             danger={isAuth}>
             Đăng xuất
           </Button>
-        ) : (
-          <Button size="large" className="w-100" type="primary">
-            <Link to={ROUTES.SIGNIN}>Đăng nhập</Link>
-          </Button>
+        </Menu.Item>
+      ) :
+        (
+          <>
+            <Menu.Item>
+              <Button size="large" className="w-100" type="primary">
+                <Link to={ROUTES.SIGNIN}>Đăng nhập</Link>
+              </Button>
+            </Menu.Item>
+            <Menu.Item>
+              <Button size="large" className="w-100 btn-secondary" type="default">
+                <Link to={ROUTES.SIGNUP}>
+                  Đăng ký
+                </Link>
+              </Button>
+            </Menu.Item>
+          </>
         )}
-      </Menu.Item>
-      <Menu.Item>
-        <Button size="large" className="w-100 btn-secondary" type="default">
-          <Link to={ROUTES.SIGNUP}>
-            Đăng ký
-          </Link>
-        </Button>
-      </Menu.Item>
+
       {isAuth && (
         <Menu.Item>
           <Button size="large" className="w-100 btn-secondary" type="default">

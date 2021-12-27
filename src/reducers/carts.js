@@ -80,7 +80,7 @@ const cartReducer = (state = initialState, action) => {
         i === index ? { ...item, amount: value } : { ...item },
       );
       // cập nhật lại local storage
-      localStorage.setItem('cart'.CARTS, JSON.stringify(newCart));
+      localStorage.setItem('cart', JSON.stringify(newCart));
       return [...newCart];
     }
     default:

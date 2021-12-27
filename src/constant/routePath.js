@@ -8,4 +8,5 @@ export const ROUTES = {
   PAYMENT: '/payment',
   PRODUCT: '/product',
   PRODUCT_DETAIL: '/product/:id',
+  NOT_FOUND: '/not-found'
 };
