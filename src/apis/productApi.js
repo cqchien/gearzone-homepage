@@ -12,6 +12,14 @@ const productApi = {
     })
   },
 
+  // api: Lấy 1 sản phẩm
+  getProduct: (id) => {
+    const url = PRODUCT_API_URL;
+    return request(`${url}/${id}`, {
+      method: 'GET',
+    });
+  },
+
 };
 
 export default productApi;

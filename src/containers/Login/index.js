@@ -42,6 +42,9 @@ function Login() {
       if (result.success) {
         onLoginSuccess(result.data);
       }
+      else {
+        message.error('Đăng nhập thất bại');
+      }
     } catch (error) {
       message.error('Đăng nhập thất bại');
     }

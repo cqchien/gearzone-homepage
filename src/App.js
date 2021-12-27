@@ -9,12 +9,12 @@ import { renderRoutes, routes } from './configs/router';
 import { useDispatch, useSelector } from "react-redux";
 import { getUserRequest } from './reducers/user';
 import { getIsAuth } from "./reducers/auth";
+import GlobalLoading from "./components/Loading/Global";
 
 
 function App() {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.authenticate);
-
 
   useEffect(() => {
     //authentication
@@ -33,7 +33,7 @@ function App() {
     <BrowserRouter >
       <TopBar />
       {/* Suspense lets your components “wait” for something before they can render. */}
-      <Suspense fallback="loading">
+      <Suspense fallback={<GlobalLoading />}>
         <div className="App" id="app">
           <Header />
           <Switch>

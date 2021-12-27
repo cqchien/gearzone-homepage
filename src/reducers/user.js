@@ -1,5 +1,6 @@
 //======= imports =======//
 import userApi from '../apis/userApi';
+import { setIsAuth } from './auth';
 //======= constant action type =======//
 const GET_USER = 'GET_USER';
 
@@ -8,8 +9,12 @@ const getUserRequest = () => {
   return async (dispatch) => {
     try {
       const response = await userApi.getUser();
-      const { user } = response.data;
-      dispatch(getUser(user));
+      if (response.success) {
+        const { user } = response.data;
+        dispatch(getUser(user));
+      } else {
+        dispatch(setIsAuth(false));
+      }
     } catch (error) {
       throw error;
     }
