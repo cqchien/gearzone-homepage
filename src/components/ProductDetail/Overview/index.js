@@ -1,4 +1,4 @@
-import { CheckOutlined, PhoneOutlined } from '@ant-design/icons';
+import { PhoneOutlined } from '@ant-design/icons';
 import { Button, Col, Image, InputNumber, message, Row } from 'antd';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -128,7 +128,7 @@ function ProductOverview(props) {
               disabled={quantity ? false : true}
               size="large"
               className="m-r-16 w-100 btn-group-item"
-              style={{ backgroundColor: '#3555c5' }}>
+              style={{ backgroundColor: '#1caf9a' }}>
               THÊM GIỎ HÀNG
             </Button>
 
@@ -145,7 +145,7 @@ function ProductOverview(props) {
           <Button
             size="large"
             className="m-tb-16 w-100 btn-group-item"
-            style={{ backgroundColor: '#3555c5' }}>
+            style={{ backgroundColor: '#1caf9a' }}>
             <a href="/" target="blank">
               <PhoneOutlined style={{ fontSize: 18 }} className="m-r-8" /> LIÊN
               HỆ

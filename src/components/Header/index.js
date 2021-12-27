@@ -36,8 +36,8 @@ function Header() {
 
   const { isAuth } = useSelector((state) => state.authenticate);
   const user = useSelector((state) => state.user);
+  const carts = useSelector((state) => state.carts);
 
-  const carts = [];
   const options = autoSearchOptions();
   const [linkSearch, setLinkSearch] = useState('');
 

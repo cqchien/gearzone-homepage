@@ -1,6 +1,6 @@
 import { Avatar, Button, Card, List } from 'antd';
-import {ROUTES} from '../../constant/routePath';
-import {formatProductPrice} from '../../helpers/index';
+import { ROUTES } from '../../constant/routePath';
+import { formatProductPrice } from '../../helpers/index';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ function Cart(props) {
                   <Avatar
                     shape="square"
                     style={{ width: 80, height: 50 }}
-                    src={item.avt}
+                    src={item.images.split(',')[0]}
                   />
                 }
                 title={item.name}
