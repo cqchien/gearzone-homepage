@@ -4,6 +4,8 @@ import { ROUTES } from "../constant/routePath";
 import HomePage from "../containers/HomePage";
 
 const Login = React.lazy(() => import('../containers/Login'));
+const ProductDetailPage = React.lazy(() => import('../containers/ProductDetailPage'));
+const NotFound = React.lazy(() => import('../components/NotFound'));
 
 
 const routes = [
@@ -17,6 +19,15 @@ const routes = [
     exact: true,
     component: () => <Login />,
   },
+  {
+    path: ROUTES.PRODUCT_DETAIL,
+    component: () => <ProductDetailPage />,
+  },
+  {
+    path: ROUTES.NOT_FOUND,
+    exact: true,
+    component: () => <NotFound />,
+  },
 ];
 
 const renderRoutes = (routes) => {
@@ -27,6 +38,6 @@ const renderRoutes = (routes) => {
 };
 
 export {
-  routes, 
+  routes,
   renderRoutes,
 };
