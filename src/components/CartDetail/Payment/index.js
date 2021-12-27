@@ -29,17 +29,19 @@ function CartPayment(props) {
         </span>
         <b>{formatProductPrice(transportFee)}</b>
       </div>
+      <div className="d-flex justify-content-between m-b-6">
+        <span className="font-size-16px" style={{ color: '#aaa' }}>
+        Thuế VAT - 10%
+        </span>
+        <b>{formatProductPrice((tempPrice*10/100))}</b>
+      </div>
       <div className="d-flex justify-content-between">
         <span className="font-size-16px" style={{ color: '#aaa' }}>
           Thành tiền
         </span>
         <b style={{ color: 'red', fontSize: 20 }}>
-          {formatProductPrice(tempPrice + transportFee)}
+          {formatProductPrice((tempPrice + transportFee + tempPrice*10/100))}
         </b>
-      </div>
-      <div className="t-end">
-        <span
-          style={{ color: '#aaa', fontSize: 16 }}>{`(Đã bao gồm VAT)`}</span>
       </div>
 
       {isCheckout ? (
