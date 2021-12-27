@@ -47,13 +47,13 @@ const cartReducer = (state = initialState, action) => {
 
       // Kiểm tra trong giỏ hàng đã có item đó hay chưa
       let isExist = false;
-      for (let i = 0; i < newCart.length; ++i) {
-        if (newCart[i].code === item.code) {
-          newCart[i].amount += item.amount;
+      newCart.forEach(cartItem => {
+        if (cartItem.SKU === item.SKU) {
+          cartItem.amount += item.amount;
           isExist = true;
-          break;
         }
-      }
+      })
+
       if (!isExist) newCart = [...newCart, item];
 
       // cập nhật lại local storage

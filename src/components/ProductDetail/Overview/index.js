@@ -10,11 +10,11 @@ import { addToCart } from '../../../reducers/carts';
 import './index.scss';
 
 // Hàm đếm số sản phẩm đó trong giỏ hàng
-function countItemInCart(productCode, carts) {
+function countItemInCart(productSKU, carts) {
   let count = 0;
   if (carts) {
     carts.forEach((item) => {
-      if (item.code === productCode) count += item.amount;
+      if (item.SKU === productSKU) count += item.amount;
     });
   }
   return count;
@@ -30,8 +30,9 @@ function ProductOverview(props) {
 
   const [numOfProduct, setNumberOfProduct] = useState(1);
   const [avtIndex, setAvtIndex] = useState(0);
+
   const carts = useSelector((state) => state.carts);
-  const currentStock = quantity - countItemInCart(quantity, carts);
+  const currentStock = quantity - countItemInCart(SKU, carts);
 
   const dispatch = useDispatch();
 
@@ -48,30 +49,14 @@ function ProductOverview(props) {
     ));
   };
 
-  // // fn: hiển thị vài thông tin cơ bản của sản phẩm
-  // const showOverviewInfo = (product) => {
-  //   let result = [];
-  //   let i = 0;
-  //   for (let key in product) {
-  //     if (i >= 5) break;
-  //     if (typeof product[key] === 'string') {
-  //       result.push(
-  //         <p key={i++} className="m-b-8">
-  //           {`- ${helpers.convertProductKey(key)}: ${product[key]}`}
-  //         </p>,
-  //       );
-  //     }
-  //   }
-  //   return result;
-  // };
-
   // fn: Thêm vào giỏ hàng
   const addCart = () => {
     let product = {
-      name, brand, category, _id, price, images, desc, quantity, SKU
+      name, brand, category, _id, price, images, desc, quantity, SKU, amount: numOfProduct,
+
     };
-    setNumberOfProduct(1);
     dispatch(addToCart(product));
+    setNumberOfProduct(1);
     message.success('Thêm vào giỏ hàng thành công');
   };
 
@@ -90,9 +75,6 @@ function ProductOverview(props) {
         </div>
         <div className="d-flex w-100 bg-white p-b-16 p-t-8">
           {showCatalogs(imgList)}
-        </div>
-        <div className="p-l-16 p-t-16 product-info">
-          {/* {showOverviewInfo(productRest)} */}
         </div>
       </Col>
 
