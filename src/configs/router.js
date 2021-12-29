@@ -8,6 +8,8 @@ const ProductDetailPage = React.lazy(() => import('../containers/ProductDetailPa
 const NotFound = React.lazy(() => import('../components/NotFound'));
 const Cart = React.lazy(() => import('../components/CartDetail'));
 const PaymentPage = React.lazy(() => import('../containers/PaymentPage'));
+const AccountPage = React.lazy(() => import('../containers/AccountPage'));
+
 
 const routes = [
   {
@@ -33,6 +35,11 @@ const routes = [
     path: ROUTES.PAYMENT,
     exact: true,
     component: () => <PaymentPage />,
+  },
+  {
+    path: ROUTES.ACCOUNT,
+    exact: false,
+    component: () => <AccountPage />,
   },
   {
     path: ROUTES.NOT_FOUND,
