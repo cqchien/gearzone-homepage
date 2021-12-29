@@ -7,7 +7,7 @@ const Login = React.lazy(() => import('../containers/Login'));
 const ProductDetailPage = React.lazy(() => import('../containers/ProductDetailPage'));
 const NotFound = React.lazy(() => import('../components/NotFound'));
 const Cart = React.lazy(() => import('../components/CartDetail'));
-
+const PaymentPage = React.lazy(() => import('../containers/PaymentPage'));
 
 const routes = [
   {
@@ -28,6 +28,11 @@ const routes = [
     path: ROUTES.CART,
     exact: true,
     component: () => <Cart />,
+  },
+  {
+    path: ROUTES.PAYMENT,
+    exact: true,
+    component: () => <PaymentPage />,
   },
   {
     path: ROUTES.NOT_FOUND,
