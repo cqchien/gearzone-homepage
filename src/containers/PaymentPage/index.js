@@ -10,8 +10,7 @@ import {
   Result,
   Row,
 } from 'antd';
-// import addressApi from 'apis/addressApi';
-// import orderApi from 'apis/orderApi';
+import orderApi from '../../apis/orderApi';
 import CartPayment from '../../components/CartDetail/Payment/index';
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,28 +22,16 @@ import { ROUTES } from '../../constant/routePath';
 import AddressUser from '../../components/UserAddress';
 
 // fn: Lấy địa chỉ giao hàng của user theo index
-const getUserDeliveryAdd = async (userId, index = 0) => {
-  try {
-    const response = [];
-    if (response) {
-      return response.data.list[index];
-    }
-    return null;
-  } catch (err) {
-    return null;
-  }
-};
-
 function PaymentPage() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.authenticate.isAuth);
 
   // ghi chú đơn hàng
   const note = useRef('');
-  const addressIndex = useRef(-1);
   const [transport, setTransport] = useState(0);
   const carts = useSelector((state) => state.carts);
   const user = useSelector((state) => state.user);
+  const address = useSelector((state) => state.address);
   const [isLoading, setIsLoading] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
   // giá tạm tính
@@ -83,39 +70,41 @@ function PaymentPage() {
 
   // event: đặt hàng
   const onCheckout = async () => {
-    try {
-      setIsLoading(true);
-      const owner = user._id;
-      if (addressIndex.current === -1) {
-        message.warn('Vui lòng chọn địa chỉ giao hàng');
-        setIsLoading(false);
-        return;
-      }
-      const deliveryAdd = await getUserDeliveryAdd(owner, addressIndex.current);
-      const paymentMethod = 0,
-        orderStatus = 0,
-        transportMethod = transport;
-      const orderDate = new Date();
-      const productList = carts.map((item, index) => {
-        const { amount, name, price, discount, _id } = item;
-        return {
-          numOfProd: amount,
-          orderProd: { name, price, discount, id: _id },
-        };
-      });
-      const response = await [];
-      if (response && response.status === 200) {
-        setTimeout(() => {
-          message.success('Đặt hàng thành công', 2);
-          setIsLoading(false);
-          setIsOrderSuccess(true);
-          dispatch(resetCart());
-        }, 1000);
-      }
-    } catch (error) {
-      message.error('Đặt hàng thất bại, thử lại', 3);
+    setIsLoading(true);
+    const owner = user._id;
+    if (!address.address) {
+      message.warn('Vui lòng chọn địa chỉ giao hàng');
       setIsLoading(false);
+      return;
     }
+    const paymentMethod = 0;
+    const transportMethod = transport;
+    const productList = carts.map((item, index) => {
+      return { numOfProd: item.amount, product: item._id };
+    });
+
+    const params = {
+      owner,
+      deliveryAddress: address.address,
+      receiver: address.name,
+      receiverPhone: address.phone,
+      orderProds: productList,
+      paymentMethod,
+      transportFee,
+      transportMethod,
+      note: note.current
+    }
+    const response = await orderApi.createOrder(params);
+    if (response && response.success) {
+      message.success('Đặt hàng thành công', 2);
+      setIsLoading(false);
+      setIsOrderSuccess(true);
+      dispatch(resetCart());
+    } else {
+      message.error('Bạn mua sản phẩm đã hết hàng hoặc có vấn đề khi đặt hàng. Xin thử lại.', 3);
+    }
+
+    setIsLoading(false);
   };
 
   // rendering ...
@@ -177,11 +166,8 @@ function PaymentPage() {
                       </Radio>
                     ))}
                   </Radio.Group>
-                  
-                  <AddressUser
-                    isCheckout={true}
-                    onChecked={(value) => (addressIndex.current = value)}
-                  />
+
+                  <AddressUser />
                 </div>
 
                 {/* ghi chú */}
@@ -201,7 +187,12 @@ function PaymentPage() {
                   <h2 className="m-b-8">Phương thức thanh toán</h2>
                   <p>Thông tin thanh toán của bạn sẽ luôn được bảo mật</p>
                   <Row gutter={[16, 16]}>
-                    <Col span={24} md={12}>
+                    <Col span={24} md={12} onClick={() =>
+                      message.success(
+                        'Bạn đã chọn phương thức thanh toán khi nhận hàng.',
+                        3,
+                      )
+                    }>
                       <div className="p-tb-8 p-lr-16 bg-gray item-active">
                         <b className="font-size-16px">
                           Thanh toán khi nhận hàng

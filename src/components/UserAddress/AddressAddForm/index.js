@@ -1,7 +1,7 @@
-import { Button, Col, Form, Input, message, Modal, Row, Select } from 'antd';
+import { Button, Col, Form, Input, message, Modal, Row } from 'antd';
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addAddress } from '../../../reducers/address';
 
 function AddressAddForm(props) {

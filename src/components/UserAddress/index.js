@@ -6,15 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddressAddForm from './AddressAddForm';
 import { delAddress } from '../../reducers/address';
 
-function AddressUser(props) {
+function AddressUser() {
   const dispatch = useDispatch();
 
   const [isVisibleForm, setIsVisibleForm] = useState(false);
 
-  const user = useSelector((state) => state.user);
   const address = useSelector((state) => state.address);
 
-  console.log(address);
   const onDelDeliveryAdd = () => {
     dispatch(delAddress());
   }
