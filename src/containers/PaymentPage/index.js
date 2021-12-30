@@ -20,6 +20,7 @@ import { TRANSPORT_METHOD_OPTIONS } from '../../constant/transportOptions';
 import { formatProductPrice, reduceProductName } from '../../helpers';
 import { resetCart } from '../../reducers/carts';
 import { ROUTES } from '../../constant/routePath';
+import AddressUser from '../../components/UserAddress';
 
 // fn: Lấy địa chỉ giao hàng của user theo index
 const getUserDeliveryAdd = async (userId, index = 0) => {
@@ -176,6 +177,11 @@ function PaymentPage() {
                       </Radio>
                     ))}
                   </Radio.Group>
+                  
+                  <AddressUser
+                    isCheckout={true}
+                    onChecked={(value) => (addressIndex.current = value)}
+                  />
                 </div>
 
                 {/* ghi chú */}
