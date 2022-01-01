@@ -14,6 +14,7 @@ import logoUrl from '../../assets/images/logoFooter.png';
 import React, { useState } from 'react';
 import './index.scss';
 import Login from './Login';
+import Dashboard from './Dashboard';
 const OrderList = React.lazy(() => import('./OrderList'));
 
 const mainColor = '#2d3946';
@@ -97,6 +98,8 @@ function AdminPage() {
   // fn: render component tương ứng
   const renderMenuComponent = (key) => {
     switch (key) {
+      case 'd':
+        return <Dashboard />;
       case 'o':
         return <OrderList />;
       default:
