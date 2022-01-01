@@ -1,13 +1,3 @@
-// fn: định dạng chuỗi truy vấn
-const formatQueryString = (str = '') => {
-  let result = str;
-  // xoá tất cả ký tự đặc biệt
-  result = str.replace(/[`~!@#$%^&*()_|+\-=?;:<>\\{\\}\\[\]\\\\/`]/gi, '');
-  // thay khoảng trắng thành dấu cộng
-  result = result.replace(/[\s]/gi, '+');
-  return result;
-};
-
 // fn: hàm rút gọn tên sản phẩm
 const reduceProductName = (name, length = 64) => {
   let result = name;
@@ -88,7 +78,6 @@ const convertPaymentMethod = (payMethod = 0) => {
 
 
 export {
-  formatQueryString,
   reduceProductName,
   autoSearchOptions,
   formatProductPrice,

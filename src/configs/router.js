@@ -9,6 +9,7 @@ const NotFound = React.lazy(() => import('../components/NotFound'));
 const Cart = React.lazy(() => import('../components/CartDetail'));
 const PaymentPage = React.lazy(() => import('../containers/PaymentPage'));
 const AccountPage = React.lazy(() => import('../containers/AccountPage'));
+const AdminPage = React.lazy(() => import('../containers/AdminPage'));
 
 
 const routes = [
@@ -40,6 +41,11 @@ const routes = [
     path: ROUTES.ACCOUNT,
     exact: false,
     component: () => <AccountPage />,
+  },
+  {
+    path: ROUTES.ADMIN,
+    exact: true,
+    component: () => <AdminPage />,
   },
   {
     path: ROUTES.NOT_FOUND,

@@ -10,7 +10,6 @@ function OrderDetail(props) {
   const [visible, setVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState({});
-  console.log(order);
   // event: lấy chi tiết đơn hàng
   useEffect(() => {
     async function getOrderDetails() {
