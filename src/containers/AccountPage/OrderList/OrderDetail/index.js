@@ -10,7 +10,7 @@ function OrderDetail(props) {
   const [visible, setVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState({});
-
+  console.log(order);
   // event: lấy chi tiết đơn hàng
   useEffect(() => {
     async function getOrderDetails() {
@@ -55,7 +55,7 @@ function OrderDetail(props) {
       dataIndex: 'numOfProd',
       key: 'numOfProd',
     },
-    
+
   ];
 
   // rendering...
@@ -147,9 +147,7 @@ function OrderDetail(props) {
                   className="m-l-32"
                   style={{ color: '#282828d9', minWidth: 180 }}>
                   {formatProductPrice(
-                    order.orderProds.map(prodInfo => (
-                      prodInfo.product.price * prodInfo.numOfProd
-                    ))
+                    order.orderProds.reduce((a, b) => (a + b.product.price * b.numOfProd), 0)
                   )}
                 </span>
               </div>
@@ -166,9 +164,7 @@ function OrderDetail(props) {
                 <span
                   className="m-l-32"
                   style={{ color: '#282828d9', minWidth: 180 }}>
-                  {formatProductPrice(order.orderProds.map(prodInfo => (
-                    prodInfo.product.price * prodInfo.numOfProd
-                  )) * 10 / 100)}
+                  {formatProductPrice(order.orderProds.reduce((a, b) => (a + b.product.price * b.numOfProd), 0) * 10 / 100)}
                 </span>
               </div>
               <div className="d-flex font-weight-500 justify-content-end">
