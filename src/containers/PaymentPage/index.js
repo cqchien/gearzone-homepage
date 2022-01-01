@@ -260,7 +260,7 @@ function PaymentPage() {
           )}
         </div>
       ) : (
-        <Redirect to={ROUTES.LOGIN} />
+        <Redirect to={ROUTES.SIGNIN} />
       )}
     </>
   );

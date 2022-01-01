@@ -1,5 +1,4 @@
 import {
-  CompassOutlined,
   NotificationOutlined,
   ReconciliationOutlined,
   UserOutlined,
@@ -11,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../constant/routePath';
 import './index.scss';
+import OrderList from './OrderList';
 
 function AccountPage() {
   const { pathname } = useLocation();
@@ -51,6 +51,7 @@ function AccountPage() {
         return (
           <>
             <h2 className="m-b-16">Các đơn hàng của bạn</h2>
+            <OrderList />
           </>
         );
       case 'notifications':

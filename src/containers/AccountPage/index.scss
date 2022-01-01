@@ -4,7 +4,7 @@
     color: #444;
   }
   .intro {
-    border-bottom: solid 1px #ddd;
+    border-bottom: solid 1px #444;
   }
   .icon {
     color: #888;
@@ -18,7 +18,7 @@
       &:hover,
       &:active {
         & > * {
-          color: #3a5dd9;
+          color: #1caf9a;
           font-weight: bold;
         }
       }

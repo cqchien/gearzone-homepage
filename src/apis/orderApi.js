@@ -10,6 +10,18 @@ const userApi = {
       data: params
     });
   },
+
+  getListOrder: () => {
+    return request(`${ORDER_API_URL}`, {
+      method: "GET",
+    });
+  },
+
+  getDetail: (id) => {
+    return request(`${ORDER_API_URL}/${id}`, {
+      method: "GET",
+    });
+  }
 };
 
 export default userApi;

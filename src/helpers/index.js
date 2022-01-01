@@ -42,10 +42,57 @@ const formatProductPrice = (price) => {
   }).format(price);
 };
 
+const formatOrderDate = (date = Date.now(), flag = 0) => {
+  const newDate = new Date(date);
+  const d = newDate.getDate(),
+    m = newDate.getMonth() + 1,
+    y = newDate.getFullYear();
+  return flag === 0
+    ? `${d}/${m}/${y}`
+    : `${newDate.getHours()}:${newDate.getMinutes()} ${d}/${m}/${y}`;
+};
+
+// fn: chuyển đổi tình trạng đơn hàng
+const convertOrderStatus = (orderStatus = 0) => {
+  switch (orderStatus) {
+    case 0:
+      return 'Đặt hàng thành công';
+    case 1:
+      return 'Đã tiếp nhận';
+    case 2:
+      return 'Đang lấy hàng';
+    case 3:
+      return 'Đóng gói xong';
+    case 4:
+      return 'Đang giao vận chuyển';
+    case 5:
+      return 'Đang vận chuyển';
+    case 6:
+      return 'Giao hàng thành công';
+    default:
+      return 'Đặt hàng thành công';
+  }
+};
+
+// fn: chuyển đổi phương thức thanh toán
+const convertPaymentMethod = (payMethod = 0) => {
+  switch (payMethod) {
+    case 0:
+      return 'Thanh toán tiền mặt khi nhận hàng';
+    case 1:
+      return 'Thanh toán online';
+    default:
+      return 'Thanh toán tiền mặt khi nhận hàng';
+  }
+};
+
 
 export {
   formatQueryString,
   reduceProductName,
   autoSearchOptions,
-  formatProductPrice
+  formatProductPrice,
+  formatOrderDate,
+  convertOrderStatus,
+  convertPaymentMethod
 };
