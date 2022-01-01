@@ -39,7 +39,6 @@ function Header() {
   const carts = useSelector((state) => state.carts);
 
   const options = autoSearchOptions();
-  const [linkSearch, setLinkSearch] = useState('');
 
   // event: log out
   const onLogout = () => {
@@ -114,9 +113,7 @@ function Header() {
             <AutoComplete
               className="trans-center w-100"
               options={options}
-              onChange={(value) =>
-                setLinkSearch(formatQueryString(value))
-              }
+             
               filterOption={(inputValue, option) =>
                 option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
                 -1
