@@ -51,7 +51,7 @@ function CartPayment(props) {
           type="primary"
           size="large"
           loading={isLoading}
-          style={{ backgroundColor: '#3555c5', color: '#fff' }}>
+          style={{ backgroundColor: '#1caf9a', color: '#fff' }}>
           ĐẶT HÀNG NGAY
         </Button>
       ) : (
@@ -60,7 +60,7 @@ function CartPayment(props) {
             className="m-t-16 d-block m-lr-auto w-100"
             type="primary"
             size="large"
-            style={{ backgroundColor: '#3555c5', color: '#fff' }}>
+            style={{ backgroundColor: '#1caf9a', color: '#fff' }}>
             THANH TOÁN
           </Button>
         </Link>

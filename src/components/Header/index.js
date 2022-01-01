@@ -15,8 +15,8 @@ import {
 import Avatar from 'antd/lib/avatar/avatar';
 import defaultAvt from '../../assets/images/default-avt.png';
 import logoUrl from '../../assets/images/logo.png';
-import { formatQueryString, reduceProductName, autoSearchOptions } from '../../helpers';
-import React, { useState } from 'react';
+import { reduceProductName, autoSearchOptions } from '../../helpers';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constant/routePath';
@@ -113,7 +113,7 @@ function Header() {
             <AutoComplete
               className="trans-center w-100"
               options={options}
-             
+
               filterOption={(inputValue, option) =>
                 option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
                 -1

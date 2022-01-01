@@ -47,7 +47,7 @@ function CartItem(props) {
             value={amount}
             onChange={(value) => onUpdateNumOfProd(index, value)}
             size="large"
-            style={{ borderColor: '#3555C5' }}
+            style={{ borderColor: '#1caf9a' }}
           />
         </div>
       </div>
@@ -56,7 +56,7 @@ function CartItem(props) {
       <div
         className="d-flex flex-direction-column align-i-end"
         style={{ flexBasis: 200 }}>
-        <b className="font-size-18px" style={{ color: '#3555C5' }}>
+        <b className="font-size-18px" style={{ color: '#1caf9a' }}>
           {formatProductPrice(price)}
         </b>
       </div>
