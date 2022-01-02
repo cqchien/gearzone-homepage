@@ -7,19 +7,17 @@ function Login(props) {
   const { onLogin } = props;
 
   const onFinish = async (account) => {
-    try {
-      const response = await loginApi.postLoginAdmin(account);
-      if (response && response.success) {
-        message.success('Đăng nhập thành công', 2);
-        const { _id, name, code } = response.data.admin;
+    const response = await loginApi.postLoginAdmin(account);
+    if (response && response.success) {
+      message.success('Đăng nhập thành công', 2);
+      const { _id, name, code } = response.data.admin;
 
-        onLogin(true, { _id, name, code });
-      }
-    } catch (error) {
+      onLogin(true, { _id, name, code });
+    } else {
       message.error('Tài khoản không tồn tại hoặc sai mật khẩu', 2);
       onLogin(false);
-    }
-  };
+    };
+  }
 
   return (
     <Form name="form" onFinish={onFinish}>

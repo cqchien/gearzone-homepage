@@ -22,7 +22,7 @@ function AnnualRevenue() {
   const endYear = new Date().getFullYear();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const admin = JSON.parse(localStorage.getItem('admin'));
+  const admin = JSON.parse(localStorage.getItem('adminGearZone'));
 
   // event: thống kê
   useEffect(() => {

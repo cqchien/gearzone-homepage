@@ -17,7 +17,7 @@ function SeeProduct() {
   const [modalDel, setModalDel] = useState({ visible: false, _id: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState([]);
-  const admin = JSON.parse(localStorage.getItem('admin'));
+  const admin = JSON.parse(localStorage.getItem('adminGearZone'));
 
   // event: xoá sản phẩm
   const onDelete = async (_id) => {

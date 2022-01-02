@@ -15,7 +15,7 @@ function generateFilterOrder() {
 function OrderList() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const admin = JSON.parse(localStorage.getItem('admin'));
+  const admin = JSON.parse(localStorage.getItem('adminGearZone'));
   // event: Cập nhật trạng thái đơn hàng
   const updateOrderStatus = async (id, orderStatus) => {
     setIsLoading(true);

@@ -16,7 +16,7 @@ function EditProductModal(props) {
   const [form] = Form.useForm();
   const initValues = product ? { ...product } : {};
   const [isUpdating, setIsUpdating] = useState(false);
-  const admin = JSON.parse(localStorage.getItem('admin'));
+  const admin = JSON.parse(localStorage.getItem('adminGearZone'));
 
   useEffect(() => {
     if (visible)

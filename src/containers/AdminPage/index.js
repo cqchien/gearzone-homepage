@@ -47,11 +47,11 @@ const menuList = [
 function AdminPage() {
   const [keyMenu, setKeyMenu] = useState('d');
   const [isLogin, setIsLogin] = useState(() => {
-    const isLogin = JSON.parse(localStorage.getItem('admin'));
+    const isLogin = JSON.parse(localStorage.getItem('adminGearZone'));
     return isLogin ? true : false;
   });
   const [adminName, setAdminName] = useState(() => {
-    const admin = JSON.parse(localStorage.getItem('admin'));
+    const admin = JSON.parse(localStorage.getItem('adminGearZone'));
     return admin ? admin.name : 'Admin';
   });
   // fn: Xử lý khi chọn item
@@ -113,16 +113,16 @@ function AdminPage() {
   // event: Login với quyền admin (props > Login)
   const onLogin = (isLogin, admin) => {
     if (isLogin) {
+      localStorage.setItem("adminGearZone", JSON.stringify(admin));
       setIsLogin(true);
       setAdminName(admin.name);
-      localStorage.setItem('admin', JSON.stringify(admin));
     }
   };
 
   // event: logout
   const onLogout = () => {
     setIsLogin(false);
-    localStorage.removeItem('admin');
+    localStorage.removeItem('adminGearZone');
   };
 
   return (

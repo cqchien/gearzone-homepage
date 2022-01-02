@@ -19,7 +19,7 @@ function MonthlyRevenue() {
   const year = new Date().getFullYear();
   const [data, setData] = useState({ thisYear: [], lastYear: [] });
   const [isLoading, setIsLoading] = useState(true);
-  const admin = JSON.parse(localStorage.getItem('admin'));
+  const admin = JSON.parse(localStorage.getItem('adminGearZone'));
 
   // Lây doanh thu
   useEffect(() => {
