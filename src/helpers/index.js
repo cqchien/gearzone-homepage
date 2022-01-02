@@ -59,6 +59,8 @@ const convertOrderStatus = (orderStatus = 0) => {
       return 'Đang vận chuyển';
     case 6:
       return 'Giao hàng thành công';
+    case 7:
+      return 'Đơn hàng bị hủy';
     default:
       return 'Đặt hàng thành công';
   }

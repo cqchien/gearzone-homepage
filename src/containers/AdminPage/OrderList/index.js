@@ -6,7 +6,7 @@ import { convertOrderStatus, formatOrderDate, formatProductPrice } from '../../.
 
 function generateFilterOrder() {
   let result = [];
-  for (let i = 0; i < 7; ++i) {
+  for (let i = 0; i < 8; ++i) {
     result.push({ value: i, text: convertOrderStatus(i) });
   }
   return result;

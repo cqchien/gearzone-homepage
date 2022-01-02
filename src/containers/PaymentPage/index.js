@@ -7,7 +7,6 @@ import {
   Input,
   message,
   Radio,
-  Result,
   Row,
 } from 'antd';
 import orderApi from '../../apis/orderApi';
@@ -115,149 +114,134 @@ function PaymentPage() {
       )}
       {isAuth ? (
         <div className="m-tb-32 container">
-          {isOrderSuccess ? (
-            <Result
-              status="success"
-              title="Đơn hàng của bạn đã đặt thành công."
-              subTitle="Xem chi tiết đơn hàng vừa rồi"
-              extra={[
-                <Button type="default" key="0">
-                  <Link to={ROUTES.ACCOUNT + '/orders'}>
-                    Xem chi tiết đơn hàng
+          {isOrderSuccess ? <Redirect to={ROUTES.HOME} />
+            : (
+              <Row gutter={[16, 16]}>
+                {/* Đường dẫn */}
+                <Col span={24} className="d-flex page-position">
+                  <Link to="/">
+                    <HomeOutlined
+                      className="p-12 icon-home font-size-16px bg-white"
+                      style={{ borderRadius: 50 }}
+                    />
                   </Link>
-                </Button>,
-                <Button key="1" type="primary">
-                  <Link to="/">Tiếp tục mua sắm</Link>
-                </Button>,
-              ]}
-            />
-          ) : (
-            <Row gutter={[16, 16]}>
-              {/* Đường dẫn */}
-              <Col span={24} className="d-flex page-position">
-                <Link to="/">
-                  <HomeOutlined
-                    className="p-12 icon-home font-size-16px bg-white"
-                    style={{ borderRadius: 50 }}
-                  />
-                </Link>
-                <span
-                  className="p-lr-8 font-weight-500"
-                  style={{ lineHeight: '40px' }}>{`>`}</span>
-                <span
-                  className="p-8 font-weight-500 bg-white"
-                  style={{ borderRadius: 50 }}>
-                  Tiến hành thanh toán
-                </span>
-              </Col>
+                  <span
+                    className="p-lr-8 font-weight-500"
+                    style={{ lineHeight: '40px' }}>{`>`}</span>
+                  <span
+                    className="p-8 font-weight-500 bg-white"
+                    style={{ borderRadius: 50 }}>
+                    Tiến hành thanh toán
+                  </span>
+                </Col>
 
-              {/* Thông tin giao hàng  */}
-              <Col span={24} md={16}>
-                {/* địa chỉ giao nhận, cách thức giao */}
-                <div className="p-12 bg-white bor-rad-8 m-tb-16">
-                  <h2>Thông tin giao hàng</h2>
-                  <Radio.Group
-                    defaultValue={transport}
-                    onChange={(v) => setTransport(v.target.value)}
-                    className="m-tb-8">
-                    {TRANSPORT_METHOD_OPTIONS.map((item, index) => (
-                      <Radio key={index} value={item.value}>
-                        {item.label}
-                      </Radio>
-                    ))}
-                  </Radio.Group>
+                {/* Thông tin giao hàng  */}
+                <Col span={24} md={16}>
+                  {/* địa chỉ giao nhận, cách thức giao */}
+                  <div className="p-12 bg-white bor-rad-8 m-tb-16">
+                    <h2>Thông tin giao hàng</h2>
+                    <Radio.Group
+                      defaultValue={transport}
+                      onChange={(v) => setTransport(v.target.value)}
+                      className="m-tb-8">
+                      {TRANSPORT_METHOD_OPTIONS.map((item, index) => (
+                        <Radio key={index} value={item.value}>
+                          {item.label}
+                        </Radio>
+                      ))}
+                    </Radio.Group>
 
-                  <AddressUser />
-                </div>
+                    <AddressUser />
+                  </div>
 
-                {/* ghi chú */}
-                <div className="p-12 bg-white bor-rad-8">
-                  <h2 className="m-b-8">Ghi chú cho đơn hàng</h2>
-                  <Input.TextArea
-                    placeholder="Nhập thông tin ghi chú nhà bán"
-                    maxLength={200}
-                    showCount
-                    allowClear
-                    onChange={(value) => (note.current = value.target.value)}
-                  />
-                </div>
+                  {/* ghi chú */}
+                  <div className="p-12 bg-white bor-rad-8">
+                    <h2 className="m-b-8">Ghi chú cho đơn hàng</h2>
+                    <Input.TextArea
+                      placeholder="Nhập thông tin ghi chú nhà bán"
+                      maxLength={200}
+                      showCount
+                      allowClear
+                      onChange={(value) => (note.current = value.target.value)}
+                    />
+                  </div>
 
-                {/* phương thức thanh toán */}
-                <div className="p-12 bg-white bor-rad-8 m-tb-16">
-                  <h2 className="m-b-8">Phương thức thanh toán</h2>
-                  <p>Thông tin thanh toán của bạn sẽ luôn được bảo mật</p>
-                  <Row gutter={[16, 16]}>
-                    <Col span={24} md={12} onClick={() =>
-                      message.success(
-                        'Bạn đã chọn phương thức thanh toán khi nhận hàng.',
-                        3,
-                      )
-                    }>
-                      <div className="p-tb-8 p-lr-16 bg-gray item-active">
-                        <b className="font-size-16px">
-                          Thanh toán khi nhận hàng
-                        </b>
-                        <p>
-                          Thanh toán bằng tiền mặt khi nhận hàng tại nhà hoặc
-                          showroom.
-                        </p>
-                      </div>
-                    </Col>
-                    <Col
-                      span={24}
-                      md={12}
-                      onClick={() =>
-                        message.warn(
-                          'Tính năng đang được cập nhật. Rất xin lỗi quý khách vì sự bất tiện này',
+                  {/* phương thức thanh toán */}
+                  <div className="p-12 bg-white bor-rad-8 m-tb-16">
+                    <h2 className="m-b-8">Phương thức thanh toán</h2>
+                    <p>Thông tin thanh toán của bạn sẽ luôn được bảo mật</p>
+                    <Row gutter={[16, 16]}>
+                      <Col span={24} md={12} onClick={() =>
+                        message.success(
+                          'Bạn đã chọn phương thức thanh toán khi nhận hàng.',
                           3,
                         )
                       }>
-                      <div className="p-tb-8 p-lr-16 bg-gray">
-                        <b className="font-size-16px">
-                          Thanh toán Online qua cổng VNPAY
-                        </b>
-                        <p>
-                          Thanh toán qua Internet Banking, Visa, Master, JCB,
-                          VNPAY-QR.
-                        </p>
-                      </div>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-
-              {/* đặt hàng */}
-              <Col span={24} md={8}>
-                {/* thồng tin đơn hàng */}
-                <div className="p-12 bg-white bor-rad-8 m-tb-16">
-                  <div className="d-flex justify-content-between">
-                    <h2>Thông tin đơn hàng</h2>
-                    <Button type="link" size="large">
-                      <Link to={ROUTES.CART}>Chỉnh sửa</Link>
-                    </Button>
+                        <div className="p-tb-8 p-lr-16 bg-gray item-active">
+                          <b className="font-size-16px">
+                            Thanh toán khi nhận hàng
+                          </b>
+                          <p>
+                            Thanh toán bằng tiền mặt khi nhận hàng tại nhà hoặc
+                            showroom.
+                          </p>
+                        </div>
+                      </Col>
+                      <Col
+                        span={24}
+                        md={12}
+                        onClick={() =>
+                          message.warn(
+                            'Tính năng đang được cập nhật. Rất xin lỗi quý khách vì sự bất tiện này',
+                            3,
+                          )
+                        }>
+                        <div className="p-tb-8 p-lr-16 bg-gray">
+                          <b className="font-size-16px">
+                            Thanh toán Online qua cổng VNPAY
+                          </b>
+                          <p>
+                            Thanh toán qua Internet Banking, Visa, Master, JCB,
+                            VNPAY-QR.
+                          </p>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
-                  <div>{showOrderInfo(carts)}</div>
-                </div>
+                </Col>
 
-                {/* tiến hành đặt hàng */}
-                <div className="bg-white">
-                  <CartPayment
-                    isLoading={isLoading}
-                    carts={carts}
-                    isCheckout={true}
-                    transportFee={transportFee}
-                    onCheckout={onCheckout}
-                  />
-                  <div className="t-center p-b-16">
-                    <span
-                      style={{
-                        color: '#ff5000',
-                      }}>{`(Xin vui lòng kiểm tra lại đơn hàng trước khi đặt mua)`}</span>
+                {/* đặt hàng */}
+                <Col span={24} md={8}>
+                  {/* thồng tin đơn hàng */}
+                  <div className="p-12 bg-white bor-rad-8 m-tb-16">
+                    <div className="d-flex justify-content-between">
+                      <h2>Thông tin đơn hàng</h2>
+                      <Button type="link" size="large">
+                        <Link to={ROUTES.CART}>Chỉnh sửa</Link>
+                      </Button>
+                    </div>
+                    <div>{showOrderInfo(carts)}</div>
                   </div>
-                </div>
-              </Col>
-            </Row>
-          )}
+
+                  {/* tiến hành đặt hàng */}
+                  <div className="bg-white">
+                    <CartPayment
+                      isLoading={isLoading}
+                      carts={carts}
+                      isCheckout={true}
+                      transportFee={transportFee}
+                      onCheckout={onCheckout}
+                    />
+                    <div className="t-center p-b-16">
+                      <span
+                        style={{
+                          color: '#ff5000',
+                        }}>{`(Xin vui lòng kiểm tra lại đơn hàng trước khi đặt mua)`}</span>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            )}
         </div>
       ) : (
         <Redirect to={ROUTES.SIGNIN} />

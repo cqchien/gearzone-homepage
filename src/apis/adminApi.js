@@ -32,6 +32,21 @@ const userApi = {
       params: { startYear, endYear, adminId },
     });
   },
+
+  deleteProduct: (id, adminId) => {
+    return request(`${USER_API_URL}/product/${id}`, {
+      method: "DELETE",
+      params: { adminId }
+    });
+  },
+
+  updateProduct: ({ _id, ...product }, adminId) => {
+    return request(`${USER_API_URL}/product/${_id}`, {
+      method: "PATCH",
+      params: { adminId },
+      data: product
+    });
+  }
 };
 
 export default userApi;

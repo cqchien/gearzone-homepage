@@ -24,7 +24,6 @@ function AnnualRevenue() {
   const [isLoading, setIsLoading] = useState(true);
   const admin = JSON.parse(localStorage.getItem('admin'));
 
-  console.log(data);
   // event: thống kê
   useEffect(() => {
     async function getStaAnnualRevenue() {

@@ -16,6 +16,7 @@ import './index.scss';
 import Login from './Login';
 import Dashboard from './Dashboard';
 const OrderList = React.lazy(() => import('./OrderList'));
+const SeeProduct = React.lazy(() => import('./ProductPage/SeeProduct'));
 
 const mainColor = '#2d3946';
 const menuList = [
@@ -30,7 +31,7 @@ const menuList = [
     title: 'Products',
     icon: <ShoppingCartOutlined />,
     children: [
-      { key: 'p0', title: 'See', icon: <EyeOutlined /> },
+      { key: 'p0', title: 'View', icon: <EyeOutlined /> },
       { key: 'p1', title: 'Add', icon: <PlusCircleOutlined /> },
     ],
   },
@@ -100,6 +101,8 @@ function AdminPage() {
     switch (key) {
       case 'd':
         return <Dashboard />;
+      case 'p0':
+        return <SeeProduct />;
       case 'o':
         return <OrderList />;
       default:

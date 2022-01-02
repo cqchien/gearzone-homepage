@@ -8,7 +8,7 @@ import OrderDetail from './OrderDetail';
 // fn: tạo danh sách lọc cho trạng thái đơn hàng
 function generateOrderStaFilter() {
   let result = [];
-  for (let i = 0; i < 7; ++i) {
+  for (let i = 0; i < 8; ++i) {
     result.push({ value: i, text: convertOrderStatus(i) });
   }
   return result;
@@ -22,7 +22,7 @@ function OrderList() {
     orderId: '',
   });
   const user = useSelector((state) => state.user);
-
+  console.log(orderList);
   // các cột cho bảng danh sách đơn hàng
   const orderColumns = [
     {
@@ -74,7 +74,7 @@ function OrderList() {
       key: 'orderStatus',
       filters: generateOrderStaFilter(),
       onFilter: (value, record) => record.orderStatus === value,
-      render: (orderStatus) => convertOrderStatus(orderStatus),
+      render: (value, records) => convertOrderStatus(records.orderStatus),
     },
   ];
 
